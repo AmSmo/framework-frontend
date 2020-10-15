@@ -16,6 +16,7 @@ class App extends React.Component {
       console.log(paintings)
       this.setState({ api: paintings})
     })
+    .catch(console.log)
 
   }
 
