@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import GalleryContainer from './containers/GalleryContainer.js'
+import NavBar from './containers/NavBar.js'
+import Login from './components/Login.js'
+import Signup from './components/Signup.js'
+import { Redirect, useHistory } from 'react-router-dom'
 
 class App extends React.Component {
   
   state = {
-    api : []
+    api : [],
+    user: null
+  }
+
+  searchHandler = (e) => {
+    e.preventDefault()
+    console.log(e.target.search.value)
   }
   
   componentDidMount(){
@@ -21,10 +31,16 @@ class App extends React.Component {
   }
 
   
+  
   render() {
   return (
      <div className="App">
+      <NavBar searchHandler={this.searchHandler}/>
       <GalleryContainer paintings={this.state.api}/>
+      <Switch>
+        <Route path="/login" render={(routerprops) => <Login {...routerprops}/>} />
+        <Route path="/signup" render={(routerprops) => <Signup {...routerprops} />} />
+      </Switch>
     </div>
     
   )
