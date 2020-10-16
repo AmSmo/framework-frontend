@@ -1,13 +1,114 @@
 body {
-  margin: 0;
+  margin: 10px; 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
+.App:before {
+    content: ' ';
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.8;
+    /* background-image: url("https://media.artscopemagazine.com/2019/07/Image_AO_Foritano_Harvard_Bauhaus.jpeg"); */
+    /* background-image: url("https://i.pinimg.com/originals/df/ea/7d/dfea7db19f0a81745ff1c2b43142d499.jpg"); */
+    /* background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/1-empty-gallery-room-and-plinth-allan-swart.jpg"); */
+    /* background-image: url("https://image.freepik.com/free-vector/art-gallery-empty-room-with-white-walls-lamps_107791-1490.jpg"); */
+    background-image: url("https://i.guim.co.uk/img/media/464e642098c2b1dcb82e831da744ae527a2f950a/0_200_6000_3600/master/6000.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=73eddf40c389269bc0e953ba089e0be8");
+    /* background-image: url("https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"); */
+    
+    background-repeat: fill;
+    background-position: 50% 20%;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    width: 100vw;
+    min-width: 200px;
+    
+}
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.wrapper {
+  perspective: 1600px;
+  margin: 3em 20px; 
+  opacity: .9;  
+  display: inline-block;
+  width:100px;
+  z-index: 10;
+}
+.middle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 0px;
+  margin-left: -80px;
+}
+.right {
+  display: flex;
+  width:45vw;
+  right: 0px;
+  position: absolute;
+  margin-right: 10px;
+}
+
+.left {
+  display: flex;
+  width:45vw;
+  left: 0px;
+  position: absolute;
+  
+}
+
+.right :nth-of-type(1) img,
+.left :nth-of-type(3) img{
+  margin-top: 50px;
+  background-color: red;
+}
+.right :nth-of-type(1) img,
+.left :nth-of-type(4) img{
+  margin-top: 0px;
+  
+}
+
+.right :nth-of-type(3) img,
+.left :nth-of-type(2) img{
+  margin-top: 110px;
+  
+}
+.right :nth-of-type(4) img,
+.left :nth-of-type(1) img{
+  margin-top: 200px;
+  
+}
+.right .inner {
+  border: 1px solid black;
+  transform: rotate3d(43, 171, -30, -75deg);
+}
+.left .inner {
+  border: 1px solid black;
+  transform: rotate3d(43, -171, 28, -70deg);
+}
+
+
+.inner img {
+  display: flex;
+  height: auto;
+  max-width: 100%;
+  /* margin: 0 auto; */
+  /* -webkit-filter: sepia(75%); */
+}
+
+
