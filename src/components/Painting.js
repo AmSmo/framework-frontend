@@ -7,9 +7,9 @@ render (){
      return(
          <div>
          <Card>
-    <Image alt="painting image" src='' wrapped ui={false} />
+    <Image alt="painting image" src={this.props.painting.results["records"][0]["images"][0]["baseimageurl"]} wrapped ui={false} />
     <Card.Content>
-      <Card.Header>Painting title</Card.Header>
+      <Card.Header>Hello</Card.Header>
       <Card.Header>Joined in 2016</Card.Header>
      <Card.Meta>Style</Card.Meta>
       <Card.Description>

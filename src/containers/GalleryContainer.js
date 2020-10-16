@@ -12,7 +12,8 @@ class GalleryContainer extends React.Component {
           .then(resp => resp.json())
           .then(paintings => {
             console.log(paintings)
-            this.setState({ api: paintings})
+            let paintingRecords = paintings[records]
+            this.setState({ api: paintingRecords})
             console.log(paintings)
           })
           .catch(console.log)
