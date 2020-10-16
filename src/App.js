@@ -5,30 +5,22 @@ import GalleryContainer from './containers/GalleryContainer.js'
 import NavBar from './containers/NavBar.js'
 import Login from './components/Login.js'
 import Signup from './components/Signup.js'
-import { Redirect, useHistory } from 'react-router-dom'
-
+import { Redirect, useHistory, withRouter } from 'react-router-dom'
+import SearchContainer from './containers/SearchContainer.js'
+const BASE_API = "http://localhost:3001/"
 class App extends React.Component {
   
   state = {
-    api : [],
     user: null
   }
 
   searchHandler = (e) => {
     e.preventDefault()
-    console.log(e.target.search.value)
+    
+    let searchValue = (e.target.search.value)
+    this.props.history.push(`/search/${searchValue}`)
   }
-  
-  componentDidMount(){
-    fetch("http://localhost:3001/paintings/1200")
-    .then(resp => resp.json())
-    .then(paintings => {
-      console.log(paintings)
-      this.setState({ api: paintings})
-    })
-    .catch(console.log)
 
-  }
 
   
   
@@ -36,8 +28,9 @@ class App extends React.Component {
   return (
      <div className="App">
       <NavBar searchHandler={this.searchHandler}/>
-      <GalleryContainer paintings={this.state.api}/>
+      <GalleryContainer/>
       <Switch>
+        <Route path="/search" render={(routerprops) => <SearchContainer {...routerprops}/>} />
         <Route path="/login" render={(routerprops) => <Login {...routerprops}/>} />
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} />} />
       </Switch>
@@ -47,4 +40,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

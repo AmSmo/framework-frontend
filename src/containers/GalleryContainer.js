@@ -1,35 +1,30 @@
 import React from 'react'
-// import Painting from './components/Painting.js'
+import Gallery from '../components/Gallery.js'
 
 class GalleryContainer extends React.Component {
 
-     // state = {
-     //      api : [],
-     //      user: null
-     //    }
+     state = {
+          api : []
+        }
         
-     //    componentDidMount(){
-     //      fetch("http://localhost:3001/paintings/1200")
-     //      .then(resp => resp.json())
-     //      .then(paintings => {
-     //        console.log(paintings)
-     //        this.setState({ api: paintings})
-     //      })
-     //      .catch(console.log)
+        componentDidMount(){
+          fetch("http://localhost:3001/galleries/1200")
+          .then(resp => resp.json())
+          .then(paintings => {
+            console.log(paintings)
+            this.setState({ api: paintings})
+            console.log(paintings)
+          })
+          .catch(console.log)
       
-     //    }
+        }
     
     
-    
-     renderPaintings(){
-          return this.props.api
-     }
      
      render(){
           return(
-               <div className="Gallery">
-                    <h1>Gallery</h1>
-                    {this.renderPaintings()}
+               <div className="GalleryContainer">
+                    <Gallery paintings={this.state.api}/>
                </div>
 
 
