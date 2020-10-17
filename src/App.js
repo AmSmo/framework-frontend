@@ -21,18 +21,33 @@ class App extends React.Component {
     this.props.history.push(`/search/${searchValue}`)
   }
 
-
+  loginHandler = (e) => {
+    const username = (e.target.username.value)
+    const password = e.target.password.value
+    let userObj = {username, password}
+    console.log(userObj)
+  }
   
+  signupHandler = (e) => {
+    const username = (e.target.username.value)
+    const password = e.target.password.value
+    const passwordConfirmation = e.target.passwordConfirmation.value
+    let userObj = { username, password, passwordConfirmation }
+      console.log(userObj)
+  }
   
   render() {
   return (
      <div className="App">
       <NavBar searchHandler={this.searchHandler}/>
-      <GalleryContainer/>
+      
       <Switch>
         <Route path="/search" render={(routerprops) => <SearchContainer {...routerprops}/>} />
-        <Route path="/login" render={(routerprops) => <Login {...routerprops}/>} />
-        <Route path="/signup" render={(routerprops) => <Signup {...routerprops} />} />
+        <Route path="/login" render={(routerprops) => <Login {...routerprops} loginHandler={this.loginHandler}/>} />
+        <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
+        <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
+       
+        
       </Switch>
     </div>
     

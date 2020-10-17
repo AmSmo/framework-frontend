@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom';
 import Gallery from '../components/Gallery.js'
 
 class GalleryContainer extends React.Component {
@@ -8,10 +9,12 @@ class GalleryContainer extends React.Component {
         }
         
         componentDidMount(){
-          fetch("http://localhost:3001/galleries/1200")
+            
+          fetch(`http://localhost:3001/galleries/${this.props.match.params.galleryId}`)
           .then(resp => resp.json())
           .then(paintings => {
-            console.log(paintings)
+     
+            
             this.setState({ api: paintings})
             console.log(paintings)
           })
@@ -19,12 +22,13 @@ class GalleryContainer extends React.Component {
       
         }
     
-    
+     
      
      render(){
+          console.log("GALLER", this.props)
           return(
                <div className="GalleryContainer">
-                    <Gallery paintings={this.state.api}/>
+                    {/* <Gallery paintings={this.state.api}/> */}
                </div>
 
 
