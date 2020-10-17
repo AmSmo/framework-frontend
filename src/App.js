@@ -32,11 +32,22 @@ class App extends React.Component {
     const username = (e.target.username.value)
     const password = e.target.password.value
     const passwordConfirmation = e.target.passwordConfirmation.value
-    let userObj = { username, password, passwordConfirmation }
-      console.log(userObj)
+    let user = { username, password }
+    let configObj = {
+      method: "POST",
+      headers: {"accepts": "application/json",
+      "content-type": "application/json"},
+      body: JSON.stringify({user})
+    }
+    fetch(BASE_API + 'users', configObj)
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(user.id)
+      this.setState({user: data.user.id})})
   }
   
   render() {
+    console.log(this.state)
   return (
      <div className="App">
       <NavBar searchHandler={this.searchHandler}/>

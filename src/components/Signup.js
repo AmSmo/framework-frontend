@@ -20,15 +20,26 @@ function Signup(props){
                 setPasswordConfirmation(e.target.value)
                 break;
         }
+        
     }
+    const invalidPassword = (password !== passwordConfirmation && password !== "" && passwordConfirmation !== "")
 
+    const pwValidation = (e)=>{
+        if (invalidPassword){
+            alert("Passwords Do Not Match")
+        }else if (username === ""){
+            alert("Must have a username")
+        }else{
+            return props.signupHandler(e)
+        }
+    }
     return(
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
-                <Image src='/logo.png' /> Log-in to your account
+                <Image src='/logo.png' /> Sign Up! 
       </Header>
-            <Form size='large' onSubmit={props.signupHandler}>
+            <Form size='large' onSubmit={pwValidation}>
                 <Segment stacked>
                     <Form.Input fluid name="username" icon='user' iconPosition='left' placeholder='Username' onChange={changeHandler}/>
                     <Form.Input
@@ -49,9 +60,10 @@ function Signup(props){
                         placeholder='Password Confirmation'
                         type='password'
                     />
+                        {invalidPassword ? <Message size="tiny" color='red'>Passwords do not match</Message> : null} 
 
                     <Button color='teal' fluid size='large'>
-                        LoginFASGDFGHFDSDGHFS
+                       Start Your Art Journey
           </Button>
                 </Segment>
             </Form>
