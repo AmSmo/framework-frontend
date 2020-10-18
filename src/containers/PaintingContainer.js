@@ -1,6 +1,14 @@
 import React from 'react'
+import { Segment, Card, Icon, Image, Button, Comment, Form, Item } from 'semantic-ui-react'
+import styled from 'styled-components'
+import FavoriteForm from '../components/FavoriteForm'
 
 class PaintingContainer extends React.Component {
+
+state = {
+  painting : [],
+  clicked: false
+}
 
 
     componentDidMount = () => {
@@ -12,46 +20,40 @@ class PaintingContainer extends React.Component {
         headers: 
             { Authorization: `Bearer ${token}`}})
         .then(resp => resp.json())
-        .then(console.log)
+        .then(painting => {
+          console.log(painting)
+          this.setState({ painting : painting})
+        })
     }
+
+    formClick = () => {
+      console.log("clicked")
+      this.setState((prevState) => ({clicked: !prevState.clicked}))
+    }
+ 
     render() {
         return (
-            
-            <div>
-                {/* <Item>
-                    <Item.Image alt="painting image" src={this.props.painting.image} wrapped ui={false} size="massive" centered />
+            <>
+          <div className="painting-info">
+           
+        <Item>
+        <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="massive" centered/></Frame>
+        <i onClick={this.formClick} class="paint brush icon"></i>
+         <h1>{this.state.painting.title}</h1>
+            <h2>{this.state.painting.artist}</h2>
+            <p>{this.state.painting.dated} </p>
+            <p>{this.state.painting.medium}</p>
+            <p>{this.state.painting.blurb}</p>
+         
+           
+        </Item>
+          </div>
 
-                    <h1>{this.props.painting.title}</h1>
-                    <h2>{this.props.painting.artist}</h2>
-                    <Card.Meta>{this.props.painting.dated} </Card.Meta>
-                    <Card.Meta>{this.props.painting.medium}</Card.Meta>
-                    <p>
-                        {this.props.painting.blurb}
-                    </p>
-
-                </Item> */}
-                {/* <Comment.Group>
-          <Comment>
-            <Comment.Avatar as='a' src='/images/avatar/small/steve.jpg' />
-            <Comment.Content>
-              <Comment.Author as='a'>Steve Jobes</Comment.Author>
-              <Comment.Text>Revolutionary!</Comment.Text>
-              <Comment.Actions>
-                <Comment.Action active>Comment</Comment.Action>
-              </Comment.Actions>
-              <Form reply>
-                <Form.TextArea />
-                <Button
-                  content='Add Comment'
-                  labelPosition='left'
-                  icon='edit'
-                  primary
-                />
-              </Form>
-            </Comment.Content>
-          </Comment>
-        </Comment.Group> */}
-            </div>
+          <div className="fave-comment">
+            {this.state.clicked? <FavoriteForm/> : null}
+        
+      </div>
+           </> 
         )
 
     }
@@ -59,3 +61,15 @@ class PaintingContainer extends React.Component {
 }
 
 export default PaintingContainer
+
+const Frame = styled.div`
+border-image: url('https://www.pngwing.com/en/free-png-vczkq') 93 92 87 92 stretch stretch;
+border-color: #f4be52;
+border-style: inset;
+border-width: 60px;
+width: 100%;
+height: 100%;
+background-color: #ffe;
+`
+
+

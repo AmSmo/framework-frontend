@@ -9,6 +9,7 @@ import { Redirect, useHistory, withRouter } from 'react-router-dom'
 import SearchContainer from './containers/SearchContainer.js'
 import MapContainer from './containers/MapContainer.js'
 import PaintingContainer from './containers/PaintingContainer.js'
+import MyGallery from './containers/MyGallery.js'
 
 const BASE_API = "http://localhost:3001/"
 
@@ -26,9 +27,13 @@ class App extends React.Component {
         headers: 
             { Authorization: `Bearer ${token}`}})
       .then(resp => resp.json())
-      .then(console.log)
-    }
+      .then(data => {
+        this.setState({user: data })
+        console.log(data, token)
+      })
+    
   }
+}
 
   searchHandler = (e) => {
     e.preventDefault()
@@ -91,15 +96,14 @@ class App extends React.Component {
   return (
      <div className="App">
       <NavBar searchHandler={this.searchHandler} logout={this.logout}/>
-      
       <Switch>
-        
         <Route path="/search/:keyword" render={(routerprops) => <SearchContainer {...routerprops}/>} />
         <Route path="/login" render={(routerprops) => <Login {...routerprops} loginHandler={this.loginHandler}/>} />
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
         <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
         <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
         <Route path="/paintings/:paintingId" render={(routerprops) => <PaintingContainer {...routerprops} />}/>
+        {/* <Route path="/favorites" render={(routerprops)} => <MyGallery {...routerprops} />}/> */}
       </Switch>
     </div>
     

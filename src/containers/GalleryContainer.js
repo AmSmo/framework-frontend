@@ -5,9 +5,25 @@ import Gallery from '../components/Gallery.js'
 class GalleryContainer extends React.Component {
 
      state = {
-          api : []
+          api : [],
+          room_number: 0,
+          total_rooms: 1
         }
         
+     moveForward = () => {
+          if (this.state.room_number < this.state.total_rooms){
+               console.log(this.stateroom_number +1)
+          }else{
+               console.log("not possible")
+          }
+     }
+     moveBackward = () => {
+          if (this.state.room_number > 0){
+               console.log(this.state.room_number - 1)
+          }else{
+               console.log("not possible")
+          }
+     }
         componentDidMount(){
           let token = localStorage.getItem("token")
           fetch(`http://localhost:3001/galleries/${this.props.match.params.galleryId}`, {headers:
@@ -16,8 +32,9 @@ class GalleryContainer extends React.Component {
           .then(paintings => {
      
             
-            this.setState({ api: paintings})
-            console.log(paintings)
+            this.setState({ api: paintings,
+          total_rooms: Math.ceil(paintings.length/6)- 1})
+            
           })
           .catch(console.log)
       
@@ -28,7 +45,8 @@ class GalleryContainer extends React.Component {
      render(){
           return(
                <div className="GalleryContainer">
-                    <Gallery paintings={this.state.api}/>
+                   
+                    <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)}/>
                </div>
 
 

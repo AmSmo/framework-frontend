@@ -1,31 +1,93 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
-import Painting from './Painting.js'
+
 import styled from 'styled-components'
 class Gallery extends React.Component {
 
-     renderPaintings = () => {
-          if (this.props.paintings.length > 0){
-          return this.props.paintings.map(painting => <Painting key={painting.id} painting={painting}/>)
-     }}
+     where = (idx) => {
+
+          switch (idx) {
+               case 0:
+                    return rightOne
+                    break;
+               case 1:
+                    return leftOne
+                    break;
+               case 2:
+                    return rightTwo
+                    break;
+               case 3:
+                    return leftTwo
+                    break;
+               case 4:
+                    return rightThree
+                    break;
+               case 5:
+                    return leftThree
+                    break;
+               default :
+                    return {display: "transparent"}
+                    break;
+          }
+     }
 
 
+
+     rightSide = () => {
+          return this.props.paintings.map((painting, idx) => {
+               if (idx % 2 === 0)
+               return (
+               
+                         <img src={painting.image} style={ this.where(idx) } />
+                    )
+          })
+     }
+     leftSide = () => {
+          return this.props.paintings.map((painting, idx) => {
+               if (idx % 2 !== 0)
+               return (
+               
+                         <img src={painting.image} style={ this.where(idx) } />
+                    )
+          })
+     }
      render(){
      return (
           
           <BackgroundDiv>
-               {this.renderPaintings()}
+               <Hall> 
+               <Left>
+                    {this.leftSide()}
+               </Left>
+               <Right>
+                    {this.rightSide()}
+               </Right>
+               </Hall>
           </BackgroundDiv>
      )
 
 
-}
-}
+     }}
 export default Gallery
-
+const Hall = styled.div`
+     display: inline-block;
+     width: 100vw;
+     height: 100vh;
+`
+const Right = styled.div`
+    width: 40vw;
+    float: right;
+    height: 100vh;
+     
+`
+const Left = styled.div`
+     width: 40vw;
+     float:left;
+     height: 100vh;
+`
 const BackgroundDiv = styled.div`
 content: ' ';
-    display: flexbox;
+    display: inline-block;
     background-position: fixed;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -52,5 +114,36 @@ content: ' ';
     -webkit-background-size: cover;
     width: 100vw;
     min-width: 200px;
-    
-`
+    `
+
+
+const leftOne ={
+     width: "250px",
+     maxHeight: "300px",
+     zIndex: 10
+}
+const leftTwo ={
+     width: "250px",
+     maxHeight: "300px",
+     zIndex: 10
+}
+const leftThree ={
+     width: "250px",
+     maxHeight: "300px",
+     zIndex: 10
+}
+const rightOne ={
+     width: "250px",
+     maxHeight: "300px",
+     zIndex: 10
+}
+const rightTwo ={
+     width: "250px",
+     maxHeight: "300px",
+     zIndex: 10
+}
+const rightThree ={
+     width: "250px",
+     maxHeight: "300px",
+     zIndex: 10
+}

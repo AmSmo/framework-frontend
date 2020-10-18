@@ -60,7 +60,7 @@ class NavBar extends React.Component {
           <Menu.Item
             name='My Gallery'
             as={Link}
-            to="/galleries"
+            to="/favorites"
             active={activeItem === 'My Gallery'}
             onClick={this.handleItemClick}
           />

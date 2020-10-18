@@ -10,8 +10,12 @@ class MapContainer extends React.Component {
      }
      
      componentDidMount(){
-            
-          fetch(`http://localhost:3001/galleries/${this.props.match.params.galleryId}`)
+          let token = localStorage.getItem("token")
+          fetch(`http://localhost:3001/galleries/${this.props.match.params.galleryId}`, {
+               method: "GET",
+               headers:
+                    { Authorization: `Bearer ${token}` }
+          })
           .then(resp => resp.json())
           .then(paintings => {
      
