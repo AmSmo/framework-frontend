@@ -33,8 +33,9 @@ function Signup(props){
             return props.signupHandler(e)
         }
     }
-    return(
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    let result = <></>
+    if (!localStorage.getItem("token")) {
+    result = <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
                 <Image src='/logo.png' /> Sign Up! 
@@ -71,8 +72,12 @@ function Signup(props){
                     Already a Member? <NavLink to="/login">Login</NavLink>
             </Message>
         </Grid.Column>
-    </Grid>
-)
+    </Grid> 
+
+    }else{
+       props.history.push("/maps")
+}
+    return (result)
 }
 
 export default Signup

@@ -4,10 +4,11 @@ import { Card, Icon, Image, Button, Comment, Form } from 'semantic-ui-react'
 class Painting extends React.Component {
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <Card>
-          <Image alt="painting image" src='' wrapped ui={false} />
+          <Image alt="painting image" src={this.props.painting.image} wrapped ui={false} />
           <Card.Content>
             <Card.Header>Painting title</Card.Header>
             <Card.Header>Joined in 2016</Card.Header>

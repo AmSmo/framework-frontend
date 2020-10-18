@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {NavLink} from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
@@ -16,11 +16,15 @@ function Login(props){
             case "password":
                 setPassword(e.target.value)
                 break;
+            default:
+                
+                break;
  
         }
     }
-        return(
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    let result = <></>
+    if (!localStorage.getItem("token")){
+        result = <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
                 <Image src='/logo.png' /> Log-in to your account
@@ -50,5 +54,9 @@ function Login(props){
         </Grid.Column>
     </Grid>
 
-)}
+}else{
+    props.history.push("/maps")
+    
+}
+return(result)}
 export default Login

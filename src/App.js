@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import GalleryContainer from './containers/GalleryContainer.js'
@@ -7,11 +7,24 @@ import Login from './components/Login.js'
 import Signup from './components/Signup.js'
 import { Redirect, useHistory, withRouter } from 'react-router-dom'
 import SearchContainer from './containers/SearchContainer.js'
+import MapContainer from './containers/MapContainer.js'
 const BASE_API = "http://localhost:3001/"
 class App extends React.Component {
   
   state = {
     user: null
+  }
+
+  componentDidMount = () => {
+    let token = localStorage.getItem("token")
+    if (token){
+      fetch(BASE_API+"auth", {
+        method: "GET", 
+        headers: 
+            { Authorization: `Bearer ${token}`}})
+      .then(resp => resp.json())
+      .then(console.log)
+    }
   }
 
   searchHandler = (e) => {
@@ -24,8 +37,22 @@ class App extends React.Component {
   loginHandler = (e) => {
     const username = (e.target.username.value)
     const password = e.target.password.value
-    let userObj = {username, password}
-    console.log(userObj)
+    let user = {username, password}
+    let configObj = {
+      method: "POST",
+      headers: {
+        "accepts": "application/json",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ user })
+    }
+    
+    fetch(BASE_API + 'login', configObj)
+      .then(resp => resp.json())
+      .then(data => {
+        localStorage.setItem("token", data.jwt)
+        this.setState({ user: data.user.id })
+      })
   }
   
   signupHandler = (e) => {
@@ -39,24 +66,35 @@ class App extends React.Component {
       "content-type": "application/json"},
       body: JSON.stringify({user})
     }
+    
     fetch(BASE_API + 'users', configObj)
     .then(resp => resp.json())
     .then(data => {
-      console.log(user.id)
-      this.setState({user: data.user.id})})
+      localStorage.setItem("token", data.jwt)
+      this.setState({user: data.user.id})
+      this.props.history.push("/maps")})
+    }
+      
+  
+
+  logout = () => {
+    this.setState({user: null})
+    localStorage.removeItem("token")
   }
   
+  
   render() {
-    console.log(this.state)
   return (
      <div className="App">
-      <NavBar searchHandler={this.searchHandler}/>
+      <NavBar searchHandler={this.searchHandler} logout={this.logout}/>
       
       <Switch>
-        <Route path="/search" render={(routerprops) => <SearchContainer {...routerprops}/>} />
+        
+        <Route path="/search/:keyword" render={(routerprops) => <SearchContainer {...routerprops}/>} />
         <Route path="/login" render={(routerprops) => <Login {...routerprops} loginHandler={this.loginHandler}/>} />
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
         <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
+        <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
        
         
       </Switch>
