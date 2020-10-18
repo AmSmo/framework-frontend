@@ -4,7 +4,7 @@ import { ImageMap, Area } from '@qiuz/react-image-map'
 function Floor(props){
 
      const onMapClick = (area: AreaType, galleryId: number) => {
-          console.log("area", area)
+
           props.history.push(`galleries/${area.galleryId}`)
           
      }
@@ -38,8 +38,8 @@ function Floor(props){
                src={(imgOne)}
                map={mapAreaOne}
                onMapClick={onMapClick}
-               onMouseEnter={()=> onEnter}
-               onMouserOver={console.log("Gdgesoghe")}
+               // onMapEnter={()=> onEnter}
+               // onMouseEnter={() => console.log("Gdgesoghe")}
                />
      ),
      [mapAreaOne, imgOne]
