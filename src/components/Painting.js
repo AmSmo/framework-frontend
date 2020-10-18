@@ -1,24 +1,23 @@
 import React from 'react'
-import { Card, Icon, Image, Button, Comment, Form } from 'semantic-ui-react'
+import { Segment, Card, Icon, Image, Button, Comment, Form, Item } from 'semantic-ui-react'
 
 class Painting extends React.Component {
 
   render() {
-    console.log(this.props)
     return (
       <div>
-        <Card>
-          <Image alt="painting image" src={this.props.painting.image} wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>Painting title</Card.Header>
-            <Card.Header>Joined in 2016</Card.Header>
-            <Card.Meta>Style</Card.Meta>
-            <Card.Description>
-              Painting description
-      </Card.Description>
-          </Card.Content>
-        </Card>
-        <Comment.Group>
+        <Item>
+          <Item.Image alt="painting image" src={this.props.painting.image} wrapped ui={false} size="massive" centered/>
+          
+            <h1>{this.props.painting.title}</h1>
+            <h2>{this.props.painting.artist}</h2>
+            <p>{this.props.painting.dated} </p>
+            <p>{this.props.painting.medium}</p>
+            <p>
+              {this.props.painting.blurb}
+            </p>
+        </Item>
+        {/* <Comment.Group>
           <Comment>
             <Comment.Avatar as='a' src='/images/avatar/small/steve.jpg' />
             <Comment.Content>
@@ -38,7 +37,7 @@ class Painting extends React.Component {
               </Form>
             </Comment.Content>
           </Comment>
-        </Comment.Group>
+        </Comment.Group> */}
       </div>
     )
 

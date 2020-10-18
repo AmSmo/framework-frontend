@@ -26,10 +26,9 @@ class GalleryContainer extends React.Component {
      
      
      render(){
-          console.log("GALLER", this.props)
           return(
                <div className="GalleryContainer">
-                    {/* <Gallery paintings={this.state.api}/> */}
+                    <Gallery paintings={this.state.api}/>
                </div>
 
 

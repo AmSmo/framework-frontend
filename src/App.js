@@ -8,7 +8,10 @@ import Signup from './components/Signup.js'
 import { Redirect, useHistory, withRouter } from 'react-router-dom'
 import SearchContainer from './containers/SearchContainer.js'
 import MapContainer from './containers/MapContainer.js'
+import PaintingContainer from './containers/PaintingContainer.js'
+
 const BASE_API = "http://localhost:3001/"
+
 class App extends React.Component {
   
   state = {
@@ -83,6 +86,7 @@ class App extends React.Component {
   }
   
   
+  
   render() {
   return (
      <div className="App">
@@ -95,8 +99,7 @@ class App extends React.Component {
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
         <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
         <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
-       
-        
+        <Route path="/paintings/:paintingId" render={(routerprops) => <PaintingContainer {...routerprops} />}/>
       </Switch>
     </div>
     
