@@ -1,8 +1,9 @@
 import React from 'react'
-import { Card, Icon, Image, Button, Comment, Form } from 'semantic-ui-react'
+import { Segment, Card, Icon, Image, Button, Comment, Form, Item } from 'semantic-ui-react'
 
 class Painting extends React.Component {
 
+<<<<<<< HEAD
 render (){
      return(
          <div>
@@ -40,8 +41,16 @@ render (){
 </Comment.Group>
 </div>
      )
+=======
+  render() {
+    return (
+      <div>
+        GALLERY
+    </div>    
+   )
+>>>>>>> 0d28749d39263a0f70056bf7b424d182feea387a
 
-}
+  }
 
 }
 

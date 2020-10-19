@@ -1,28 +1,52 @@
 import React from 'react'
-
+import Painting from '../components/Painting.js'
 class SearchContainer extends React.Component{
 
     state = {
-        api: []
+        api: [],
+        searchTerm: ""
     }
 
-    // componentDidMount() {
-    //     fetch("http://localhost:3001/search/1200")
-    //         .then(resp => resp.json())
-    //         .then(paintings => {
-    //             console.log(paintings)
-    //             this.setState({ api: paintings })
-    //         })
-    //         .catch(console.log)
-
-    // }
+    renderResults = () => {
+        if (this.state.api.length === 0) {
+            return <div> Loading</div>
+        }else{
+            return this.state.api.map((painting, idx) => <Painting key={idx} painting={painting} />)
+        }
+    }
+    
+    componentDidUpdate = (prevProps, prevState) => {
+        let keyword = this.props.match.params.keyword
+        if (prevState.searchTerm !== keyword){
+        this.setState({searchTerm: keyword})
+        let token = localStorage.getItem("token")
+        fetch(`http://localhost:3001/search/${keyword}`, {headers:
+            { Authorization: `Bearer ${token}` }})
+            
+            .then(resp => {
+                console.log(resp)
+                return resp.json()})
+            .then(data => {
+                if (data.errors){
+                   return this.setState({api: []})
+                }else{
+                return this.setState({ api: data })}
+            })
+            .catch(console.log)
+        }}
+    
     render(){
-        console.log(this.props.history.params)
-        return(
+        console.log(this.state)
+        
+            {return this.props.match.params.keyword ? 
+                            
         <div>
-            I'm a search!!!
+            {this.renderResults()}
         </div>
-    )}
+            :
+        
+        <div> Not Searched</div>}
+    }
 }
 
 export default SearchContainer
