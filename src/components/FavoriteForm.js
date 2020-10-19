@@ -21,7 +21,6 @@ class FavoriteForm extends React.Component {
                
           <Form onSubmit={(e) => this.props.submitHandler(e)} >
              <Form.TextArea onChange={this.changeHandler}  name="comment" value={this.state.comment} placeholder="Comments on the Artwork"/> 
-              {/* <Input fluid placeholder='Search...' /> */}
                 <Button
                   content='Add Comment'
                   labelPosition='left'

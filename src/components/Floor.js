@@ -70,6 +70,10 @@ function Floor(props){
           [mapAreaTwo, imgTwo]
      );
 
+
+     // if this.props.match.mapId === 3 
+     // <Immap1>
+
      return (
               <div>
                     {ImageMapComponentOne}

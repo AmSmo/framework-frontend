@@ -31,7 +31,7 @@ class GalleryContainer extends React.Component {
           .then(resp => resp.json())
           .then(paintings => {
      
-            
+               console.log(paintings)
             this.setState({ api: paintings,
           total_rooms: Math.ceil(paintings.length/6)- 1})
             
@@ -43,9 +43,9 @@ class GalleryContainer extends React.Component {
      
      
      render(){
+          console.log("GC", this.state.api)
           return(
                <div className="GalleryContainer">
-                   
                     <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)} history={this.props.history}/>
                </div>
 

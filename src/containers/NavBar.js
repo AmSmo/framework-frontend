@@ -36,18 +36,13 @@ class NavBar extends React.Component {
     const floors = [
       {key: "All Floors", text: "All Floors", value: "All Floors"}, 
       {key: "First Floor", text: "First Floor", value: "First Floor"},  
-      {key: "Second Floor", text: "Second Floor", value: "Second Floor"}  
-    ]
-
-    return (
-      <div>
+      {key: "First Floor", text: "First Floor", value: "First Floor"}]
+      return (<div>
         <Menu pointing>
           {localStorage.token ?
             <Menu.Item
               name='Logout'
               as={Link}
-              to="/login"
-              active={activeItem === 'Logout'}
               onClick={this.props.logout}
             />
             :
@@ -90,6 +85,7 @@ class NavBar extends React.Component {
           </Menu.Menu>
         </Menu>
       </div>
+      
     )
   }
 }

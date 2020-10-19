@@ -20,8 +20,8 @@ class MyGallery extends React.Component {
                        Authorization: `Bearer ${token}`}})
             .then(resp => resp.json())
             .then(data => {
-              
-              this.setState({ favorites : data.paintings})
+              console.log(data)
+          //     this.setState({ favorites : data.paintings})
             })
           
         }
@@ -37,10 +37,11 @@ class MyGallery extends React.Component {
                     <h2>Faves</h2>
                     {this.renderFaves()}
                </div>
-
+                 
            )
       }
 
-}
+     }
 
-export default MyGallery
+export default MyGallery 
+
