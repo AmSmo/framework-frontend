@@ -1,28 +1,46 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 import {NavLink} from 'react-router-dom'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
-class Login extends React.Component{
-    changeHandler = (e) => {
-        console.log(e.target.name)
-        this.setState({ [e.target.name]: e.target.value })
+function Login(props){
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    
+
+    const changeHandler = (e) => {
+        switch (e.target.name) {
+            case "username":
+                setUsername(e.target.value)
+                break;
+            case "password":
+                setPassword(e.target.value)
+                break;
+            default:
+                
+                break;
+ 
+        }
     }
-    render(){
-        return(
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    let result = <></>
+    if (!localStorage.getItem("token")){
+        result = <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
                 <Image src='/logo.png' /> Log-in to your account
       </Header>
-            <Form size='large'>
+            <Form size='large' onSubmit={props.loginHandler}>
                 <Segment stacked>
-                    <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+                            <Form.Input fluid icon='user' onChange={changeHandler} value={username} name="username" iconPosition='left' placeholder='Username' />
                     <Form.Input
                         fluid
                         icon='lock'
+                        name="password"
                         iconPosition='left'
                         placeholder='Password'
                         type='password'
+                         onChange={changeHandler} 
+                         value={password}
                     />
 
                     <Button color='blue' fluid size='large'>
@@ -36,5 +54,9 @@ class Login extends React.Component{
         </Grid.Column>
     </Grid>
 
-)}}
+}else{
+    props.history.push("/maps")
+    
+}
+return(result)}
 export default Login
