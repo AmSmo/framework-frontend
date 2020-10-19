@@ -30,10 +30,11 @@ class GalleryContainer extends React.Component {
           { Authorization: `Bearer ${token}` }})
           .then(resp => resp.json())
           .then(paintings => {
-            console.log(paintings)
-            let paintingRecords = paintings[records]
-            this.setState({ api: paintingRecords})
-            console.log(paintings)
+     
+               console.log(paintings)
+            this.setState({ api: paintings,
+          total_rooms: Math.ceil(paintings.length/6)- 1})
+            
           })
           .catch(console.log)
       

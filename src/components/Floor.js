@@ -84,6 +84,7 @@ function Floor(props){
           
      )
 
+<<<<<<< HEAD
      // renderBothMaps = () => {
      //      return (
      //           <Box>
@@ -111,6 +112,9 @@ function Floor(props){
      //      )
      // }
           
+=======
+        
+>>>>>>> main
 
 
 }

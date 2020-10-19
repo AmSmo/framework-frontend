@@ -4,6 +4,7 @@ import { Segment, Card, Icon, Image, Button, Comment, Form, Item } from 'semanti
 class Painting extends React.Component {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 render (){
      return(
          <div>
@@ -42,13 +43,18 @@ render (){
 </div>
      )
 =======
+=======
+>>>>>>> main
   render() {
     return (
       <div>
         GALLERY
     </div>    
    )
+<<<<<<< HEAD
 >>>>>>> 0d28749d39263a0f70056bf7b424d182feea387a
+=======
+>>>>>>> main
 
   }
 

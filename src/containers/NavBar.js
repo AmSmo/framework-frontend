@@ -26,9 +26,15 @@ class NavBar extends React.Component {
   //   }
   //   console.log(this.state.dropdown)
   // }
+<<<<<<< HEAD
   dropdownChange = (e, {name, value}) => {
     this.setState({activeItem : name})
   }
+=======
+  // dropdownChange = (e, {name, value}) => {
+  //   this.setState({activeItem : name})
+  // }
+>>>>>>> main
   
 
   render() {
@@ -36,6 +42,7 @@ class NavBar extends React.Component {
     const floors = [
       {key: "All Floors", text: "All Floors", value: "All Floors"}, 
       {key: "First Floor", text: "First Floor", value: "First Floor"},  
+<<<<<<< HEAD
       {key: "First Floor", text: "First Floor", value: "First Floor"}]
       return (<div>
         <Menu pointing>
@@ -47,6 +54,18 @@ class NavBar extends React.Component {
             />
             :
             <>
+=======
+      {key: "Second Floor", text: "Second Floor", value: "Second Floor"}]
+      return (<div>
+        <Menu pointing>
+            <Menu.Item
+              name='Logout'
+              as={Link}
+              to="/logout"
+              active={activeItem==='Logout'}
+              onClick={this.props.logout}
+            />
+>>>>>>> main
               <Menu.Item
                 name='Login'
                 as={Link}
@@ -55,7 +74,10 @@ class NavBar extends React.Component {
                 onClick={this.handleItemClick}
               />
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
               <Menu.Item
                 name='Signup'
                 as={Link}
@@ -63,8 +85,11 @@ class NavBar extends React.Component {
                 active={activeItem === 'Signup'}
                 onClick={this.handleItemClick}
               />
+<<<<<<< HEAD
             </>
           }
+=======
+>>>>>>> main
           <Menu.Item
             name='My Gallery'
             as={Link}
