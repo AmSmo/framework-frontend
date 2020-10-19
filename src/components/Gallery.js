@@ -31,14 +31,18 @@ class Gallery extends React.Component {
           }
      }
 
-
+     clickHandler = (painting) => {
+          console.log(this.props.history.push(`/paintings/${painting.ham_id}`))
+          
+     }
 
      rightSide = () => {
           return this.props.paintings.map((painting, idx) => {
+               console.log(painting, idx)
                if (idx % 2 === 0)
                return (
                
-                         <img src={painting.image} style={ this.where(idx) } />
+                         <img onClick={() => this.clickHandler(painting)} src={painting.image} style={ this.where(idx) } />
                     )
           })
      }
@@ -46,8 +50,7 @@ class Gallery extends React.Component {
           return this.props.paintings.map((painting, idx) => {
                if (idx % 2 !== 0)
                return (
-               
-                         <img src={painting.image} style={ this.where(idx) } />
+                    <img onClick={() => this.clickHandler(painting)} src={painting.image} style={ this.where(idx) } />
                     )
           })
      }
@@ -72,18 +75,31 @@ export default Gallery
 const Hall = styled.div`
      display: inline-block;
      width: 100vw;
-     height: 100vh;
+     height: 95vh;
+     overflow:scroll;
+     
 `
 const Right = styled.div`
-    width: 40vw;
-    float: right;
-    height: 100vh;
+     float: right;
+     height: 950px;
+     perspective: 1600px;
+     margin: 3em 3vw; 
+     width:100px;
+     z-index: 10;
+     margin-right:50px;
+     display: flex;
      
 `
 const Left = styled.div`
-     width: 40vw;
+     
      float:left;
-     height: 100vh;
+     height: 950px;
+     perspective: 1600px;
+     margin: 3em 3vw; 
+     width:100px;
+     z-index: 10;
+     margin-left: 50px;
+     display: flex;
 `
 const BackgroundDiv = styled.div`
 content: ' ';
@@ -91,14 +107,14 @@ content: ' ';
     background-position: fixed;
     flex-wrap: wrap;
     justify-content: space-around;
-    overflow: scroll;
+    overflow: hidden;
     flex;
     left: 0;
     top: 20px;
-    width: 100vw;
+    width: 1200px;
     height: 100vh;
     z-index: 1;
-    opacity: 0.8;
+    opacity: 0.9;
     /* background-image: url("https://media.artscopemagazine.com/2019/07/Image_AO_Foritano_Harvard_Bauhaus.jpeg"); */
     /* background-image: url("https://i.pinimg.com/originals/df/ea/7d/dfea7db19f0a81745ff1c2b43142d499.jpg"); */
     /* background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/1-empty-gallery-room-and-plinth-allan-swart.jpg"); */
@@ -118,32 +134,61 @@ content: ' ';
 
 
 const leftOne ={
-     width: "250px",
+     position: "fixed",
+     left: "-3.5vw",
+     width: "280px",
      maxHeight: "300px",
-     zIndex: 10
+     bottom: "30%",
+     opacity: "1",
+     transform: "rotate3d(-2, -132, 1, -61deg)"
 }
 const leftTwo ={
-     width: "250px",
+     position: "fixed",
+     left: "10vw",
+     width: "280px",
      maxHeight: "300px",
-     zIndex: 10
+     bottom: "31%",
+     marginLeft: "-00px",
+     opacity: "1",
+     transform: "rotate3d(8, -122, 2, -51deg)"
 }
 const leftThree ={
-     width: "250px",
+     position: "fixed",
+     left: "10vw",
+     width: "280px",
      maxHeight: "300px",
-     zIndex: 10
+     marginLeft: "200px",
+     bottom: "32%",
+     opacity: "1",
+     transform: "rotate3d(2, -172, -3, -47deg)"
 }
 const rightOne ={
-     width: "250px",
-     maxHeight: "300px",
-     zIndex: 10
+     
+     position: "fixed",
+     right: "-1vw",
+     bottom: "30%",
+     width: "220px",
+     maxHeight: "270px",
+     zIndex: "10",     
+     transform: "rotate3d(-4, 164, 10, -59deg)"
+
 }
 const rightTwo ={
-     width: "250px",
-     maxHeight: "300px",
-     zIndex: 10
+     position: "fixed",
+     right: "10vw",
+     width: "220px",
+     bottom: "31%",
+     maxHeight: "270px",
+     zIndex: "10",
+     transform: "rotate3d(6, 193, 13, -54deg)"
 }
+
 const rightThree ={
-     width: "250px",
-     maxHeight: "300px",
-     zIndex: 10
+     position: "fixed",
+     right: "22vw",
+     width: "220px",
+     bottom: "32%",
+     maxHeight: "270px",
+     zIndex: "10",
+     transform: "rotate3d(17, 174, -7, -47deg)"
 }

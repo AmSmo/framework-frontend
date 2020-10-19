@@ -46,7 +46,7 @@ class GalleryContainer extends React.Component {
           return(
                <div className="GalleryContainer">
                    
-                    <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)}/>
+                    <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)} history={this.props.history}/>
                </div>
 
 

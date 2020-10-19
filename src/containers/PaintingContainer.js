@@ -30,29 +30,53 @@ state = {
       console.log("clicked")
       this.setState((prevState) => ({clicked: !prevState.clicked}))
     }
+
+    // submitHandler = (painting, e) => {
+    //   let comment = e.target.comment.value 
+    //   let token = localStorage.getItem("token")
+    //   fetch("http://localhost:3001", {
+    //     method: "POST",
+    //     headers: { Authorization: `Bearer ${token}`},
+    //     body: JSON.stringify({ painting : this.state.painting}, {comment : comment})
+    //     .then(resp => resp.json())
+    //   })
+      
+      
+      
+colorChange = (e) => {
+  e.target.style.color = "gold"
+}
+
+normal = (e) => {
+  e.target.style.color = "black"
+}
+      
+    
  
     render() {
         return (
             <>
+            <Background>
           <div className="painting-info">
            
         <Item>
         <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="massive" centered/></Frame>
-        <i onClick={this.formClick} class="paint brush icon"></i>
+        <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} </p>
             <p>{this.state.painting.medium}</p>
-            <p>{this.state.painting.blurb}</p>
+           <Frame> <p>{this.state.painting.blurb}</p></Frame>
          
            
         </Item>
           </div>
 
           <div className="fave-comment">
-            {this.state.clicked? <FavoriteForm/> : null}
+            {this.state.clicked? <FavoriteForm submitHandler={this.submitHandler}/> : null}
         
       </div>
+      </Background>
            </> 
         )
 
@@ -63,7 +87,6 @@ state = {
 export default PaintingContainer
 
 const Frame = styled.div`
-border-image: url('https://www.pngwing.com/en/free-png-vczkq') 93 92 87 92 stretch stretch;
 border-color: #f4be52;
 border-style: inset;
 border-width: 60px;
@@ -72,4 +95,6 @@ height: 100%;
 background-color: #ffe;
 `
 
-
+const Background = styled.div`
+background-color: #640D14
+`

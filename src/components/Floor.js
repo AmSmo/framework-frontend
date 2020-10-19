@@ -1,5 +1,7 @@
-import React from 'react'
-import { ImageMap, Area } from '@qiuz/react-image-map'
+import React from 'react';
+import { ImageMap, Area } from '@qiuz/react-image-map';
+import { Container } from 'semantic-ui-react';
+import styled from 'styled-components'
 
 function Floor(props){
 
@@ -70,12 +72,13 @@ function Floor(props){
           return (
                
                <>
-                    <div style={{width:"900px", textAlign: "center"}}>
+              
+                    <Box>
                          {ImageMapComponentOne}
-                    </div>
-                    <div>
+                         <div>
                          {ImageMapComponentTwo}
                     </div>
+                    </Box>
                </>
           )
           
@@ -87,4 +90,9 @@ function Floor(props){
 }
 export default Floor
 
+const Box = styled.div`
+text-align: center
+display: block
+width: 800px
 
+`
