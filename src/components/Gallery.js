@@ -4,26 +4,35 @@ import { Card } from 'semantic-ui-react'
 import styled from 'styled-components'
 class Gallery extends React.Component {
 
+     state = {
+          width: window.innerWidth,
+          height: window.innerHeight
+     }
      where = (idx) => {
-
+          let adjusted_height = this.state.height
+          let adjusted_width = this.state.width
+          let ratio = window.innerHeight / window.innerWidth
+          if (ratio < .5){
+               
+          }
           switch (idx) {
                case 0:
-                    return rightOne
+                    return rightOne(adjusted_width, adjusted_height)
                     break;
                case 1:
-                    return leftOne
+                    return leftOne(adjusted_width, adjusted_height)
                     break;
                case 2:
-                    return rightTwo
+                    return rightTwo(adjusted_width, adjusted_height)
                     break;
                case 3:
-                    return leftTwo
+                    return leftTwo(adjusted_width, adjusted_height)
                     break;
                case 4:
-                    return rightThree
+                    return rightThree(adjusted_width, adjusted_height)
                     break;
                case 5:
-                    return leftThree
+                    return leftThree(adjusted_width, adjusted_height)
                     break;
                default :
                     return {display: "transparent"}
@@ -31,14 +40,25 @@ class Gallery extends React.Component {
           }
      }
 
+     componentDidMount = () => {
+          window.addEventListener('resize', this.updateDimensions)
+     }
+
+     componentWillUnmount = () => {
+          window.removeEventListener("resize", this.updateDimensions)
+     }
+     updateDimensions = () => {
+          this.setState({width: window.innerWidth, height: window.innerHeight})
+     }
+
      clickHandler = (painting) => {
-          console.log(this.props.history.push(`/paintings/${painting.ham_id}`))
+          (this.props.history.push(`/paintings/${painting.ham_id}`))
           
      }
 
      rightSide = () => {
           return this.props.paintings.map((painting, idx) => {
-               console.log(painting, idx)
+              
                if (idx % 2 === 0)
                return (
                
@@ -55,6 +75,7 @@ class Gallery extends React.Component {
           })
      }
      render(){
+          console.log(leftOne)
      return (
           
           <BackgroundDiv>
@@ -108,7 +129,7 @@ content: ' ';
     flex-wrap: wrap;
     justify-content: space-around;
     overflow: hidden;
-    flex;
+    background-size: contain;
     left: 0;
     top: 20px;
     width: 1200px;
@@ -117,7 +138,7 @@ content: ' ';
     opacity: 0.9;
     /* background-image: url("https://media.artscopemagazine.com/2019/07/Image_AO_Foritano_Harvard_Bauhaus.jpeg"); */
     /* background-image: url("https://i.pinimg.com/originals/df/ea/7d/dfea7db19f0a81745ff1c2b43142d499.jpg"); */
-    /* background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/1-empty-gallery-room-and-plinth-allan-swart.jpg"); */
+    /* background-image: url("https://images.fineartamerica.com/images/artworkimages/large/2/1-empty-gallery-room-and-plinth-allan-swart.jpg"); */
     /* background-image: url("https://image.freepik.com/free-vector/art-gallery-empty-room-with-white-walls-lamps_107791-1490.jpg"); */
     background-image: url("https://i.guim.co.uk/img/media/464e642098c2b1dcb82e831da744ae527a2f950a/0_200_6000_3600/master/6000.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=73eddf40c389269bc0e953ba089e0be8");
     /* background-image: url("https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"); */
@@ -133,62 +154,66 @@ content: ' ';
     `
 
 
-const leftOne ={
+function leftOne(width,height){ return {
      position: "fixed",
      left: "-3.5vw",
-     width: "280px",
-     maxHeight: "300px",
+     width: `${(width/1357)*280}px`,
+     maxHeight: `${height/1030 * 270}px`,
      bottom: "30%",
      opacity: "1",
-     transform: "rotate3d(-2, -132, 1, -61deg)"
+     transform: "rotate3d(-2, -132, 1, -61deg)"}
 }
-const leftTwo ={
+function leftTwo(width, height){return{
      position: "fixed",
      left: "10vw",
-     width: "280px",
-     maxHeight: "300px",
+     width: `${(width / 1357) * 280}px`,
+     maxHeight: `${height / 1030 * 270}px`,
      bottom: "31%",
      marginLeft: "-00px",
      opacity: "1",
-     transform: "rotate3d(8, -122, 2, -51deg)"
+     transform: "rotate3d(8, -122, 2, -51deg)"}
 }
-const leftThree ={
-     position: "fixed",
+function leftThree(width, height){
+     return {position: "fixed",
      left: "10vw",
-     width: "280px",
-     maxHeight: "300px",
+          width: `${(width / 1357) * 280}px`,
+          maxHeight: `${height / 1030 * 270}px`,
      marginLeft: "200px",
      bottom: "32%",
      opacity: "1",
-     transform: "rotate3d(2, -172, -3, -47deg)"
+     transform: "rotate3d(2, -172, -3, -47deg)"}
 }
-const rightOne ={
+function rightOne(width, height){return{
      
      position: "fixed",
-     right: "-1vw",
-     bottom: "30%",
-     width: "220px",
-     maxHeight: "270px",
-     zIndex: "10",     
-     transform: "rotate3d(-4, 164, 10, -59deg)"
-
-}
-const rightTwo ={
-     position: "fixed",
-     right: "10vw",
-     width: "220px",
-     bottom: "31%",
-     maxHeight: "270px",
-     zIndex: "10",
-     transform: "rotate3d(6, 193, 13, -54deg)"
-}
-
-const rightThree ={
-     position: "fixed",
-     right: "22vw",
-     width: "220px",
+     right: "-4vw",
      bottom: "32%",
-     maxHeight: "270px",
+     // top: `${height * 0.32}px`,
+     width: `${(width/1357)*1.2*280}px`,
+     maxHeight: `${height / 1030 * 270}px`,
+     zIndex: "10",     
+     transform: "rotate3d(6, 164, -10, -59deg)"
+}
+}
+function rightTwo(width, height){return{
+     position: "fixed",
+     right: "8vw",
+     width: `${(width/1357)*1.2*280}px`,
+     bottom: "31%",
+     // top: `${height * 0.30}px`,
+     maxHeight: `${height / 1030 * 270}px`,
      zIndex: "10",
-     transform: "rotate3d(17, 174, -7, -47deg)"
+     transform: "rotate3d(6, 193, -10, -54deg)"
+}
+}
+function rightThree(width, height){return{
+     position: "fixed",
+     right: "20vw",
+     width: `${(width/1357)*280*1.2}px`,
+     // top: `${height*0.28}px`,
+     bottom: "30%",
+     maxHeight: `${height / 1030 * 270}px`,
+     zIndex: "10",
+     transform: "rotate3d(6, 174, -10, -50deg)"
+}
 }

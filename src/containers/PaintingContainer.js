@@ -27,19 +27,23 @@ state = {
     }
 
     formClick = () => {
-      console.log("clicked")
       this.setState((prevState) => ({clicked: !prevState.clicked}))
     }
 
-    // submitHandler = (painting, e) => {
-    //   let comment = e.target.comment.value 
-    //   let token = localStorage.getItem("token")
-    //   fetch("http://localhost:3001", {
-    //     method: "POST",
-    //     headers: { Authorization: `Bearer ${token}`},
-    //     body: JSON.stringify({ painting : this.state.painting}, {comment : comment})
-    //     .then(resp => resp.json())
-    //   })
+    submitHandler = (e) => {
+      e.preventDefault()
+      let comment = e.target.comment.value 
+      let token = localStorage.getItem("token")
+      fetch("http://localhost:3001/users/favorites", {
+        method: "POST",
+        headers: {Authorization: `Bearer ${token}`,
+        "Accepts": "application/json",
+        "Content-type": "application/json"},
+        body: JSON.stringify({ painting : this.state.painting, comment})})
+        .then(resp => resp.json())
+        .then(console.log)
+        .catch(console.log)
+      }
       
       
       
@@ -60,13 +64,13 @@ normal = (e) => {
           <div className="painting-info">
            
         <Item>
-        <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="massive" centered/></Frame>
+        <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="huge" centered/></Frame>
         <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} </p>
-            <p>{this.state.painting.medium}</p>
-           <Frame> <p>{this.state.painting.blurb}</p></Frame>
+            <p>{this.state.painting.style}</p>
+           <Frame> {this.state.painting.blurb}</Frame>
          
            
         </Item>
@@ -89,10 +93,10 @@ export default PaintingContainer
 const Frame = styled.div`
 border-color: #f4be52;
 border-style: inset;
-border-width: 60px;
-width: 100%;
-height: 100%;
+border-width: 30px;
+width: 450px;
 background-color: #ffe;
+margin: 0px auto;
 `
 
 const Background = styled.div`

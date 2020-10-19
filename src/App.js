@@ -101,9 +101,9 @@ class App extends React.Component {
         <Route path="/login" render={(routerprops) => <Login {...routerprops} loginHandler={this.loginHandler}/>} />
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
         <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
-        <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
+        <Route path="/maps/:mapId" render={(routerprops) => <MapContainer {...routerprops} />}/>
         <Route path="/paintings/:paintingId" render={(routerprops) => <PaintingContainer {...routerprops} />}/>
-        {/* <Route path="/favorites" render={(routerprops)} => <MyGallery {...routerprops} />}/> */}
+        <Route path="/favorites" render={(routerprops) => <MyGallery {...routerprops} />}/>
       </Switch>
     </div>
     

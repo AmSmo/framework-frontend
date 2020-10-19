@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Card, Icon, Image, Button, Comment, Form, Item } from 'semantic-ui-react';
+import { Grid, Segment, Card, Icon, Image, Button, Comment, Form, Item, Input } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
@@ -13,18 +13,15 @@ class FavoriteForm extends React.Component {
           this.setState({[e.target.name]: e.target.value})
      }
 
-     submitHandler= (e) => {
-          e.preventDefault()
-          this.props.submitHandler(this.state)
-          
-     }
+     
      render(){
      return(
          
- <Comment.Group>
-          <Comment>
-               <Form onSubmit={this.submitHandler} >
-               <ComStyle> <Form.TextArea onChange={this.changeHandler}  name="comment" value={this.state.comment} placeholder="Comments on the Artwork"/> </ComStyle>
+          <OurComment>
+               
+          <Form onSubmit={(e) => this.props.submitHandler(e)} >
+             <Form.TextArea onChange={this.changeHandler}  name="comment" value={this.state.comment} placeholder="Comments on the Artwork"/> 
+              {/* <Input fluid placeholder='Search...' /> */}
                 <Button
                   content='Add Comment'
                   labelPosition='left'
@@ -32,8 +29,7 @@ class FavoriteForm extends React.Component {
                   primary
                 />
               </Form>
-          </Comment>
-        </Comment.Group> 
+          </OurComment>
        
      )
      }
@@ -42,8 +38,16 @@ class FavoriteForm extends React.Component {
 
 export default FavoriteForm
 
+const OurComment = styled.div`
+     width: 450px;
+     margin: 10px auto;
+
+`
 
 const ComStyle = styled.div`
 text-align: center
+display: block
+width: 100%
+height: 100%
 
 `

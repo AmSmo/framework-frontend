@@ -9,7 +9,7 @@ class MapContainer extends React.Component {
           api : []
      }
      
-     componentDidMount(){
+     componentDidMount= () => {
           let token = localStorage.getItem("token")
           fetch(`http://localhost:3001/galleries/${this.props.match.params.galleryId}`, {
                method: "GET",
