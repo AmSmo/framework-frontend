@@ -1,6 +1,5 @@
 import React from 'react';
 import { ImageMap, Area } from '@qiuz/react-image-map';
-import { Container } from 'semantic-ui-react';
 import styled from 'styled-components'
 
 function Floor(props){
