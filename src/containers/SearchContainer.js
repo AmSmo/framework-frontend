@@ -24,7 +24,7 @@ class SearchContainer extends React.Component{
             { Authorization: `Bearer ${token}` }})
             
             .then(resp => {
-                console.log(resp)
+                
                 return resp.json()})
             .then(data => {
                 if (data.errors){
@@ -36,8 +36,7 @@ class SearchContainer extends React.Component{
         }}
     
     render(){
-        console.log(this.state)
-        
+    
             {return this.props.match.params.keyword ? 
                             
         <div>

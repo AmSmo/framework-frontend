@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React from "react";
 import { ImageMap, Area } from '@qiuz/react-image-map';
 import Floor from '../components/Floor.js';
+=======
+import React from "react"
+
+import Floor from '../components/Floor.js'
+ 
+>>>>>>> main
 
 class MapContainer extends React.Component {
 
@@ -19,6 +26,10 @@ class MapContainer extends React.Component {
           .then(paintings => {
             
             this.setState({ api: paintings})
+<<<<<<< HEAD
+=======
+           
+>>>>>>> main
           })
           .catch(console.log)
       
@@ -30,7 +41,11 @@ class MapContainer extends React.Component {
      
      
      render(){
+<<<<<<< HEAD
           
+=======
+         
+>>>>>>> main
           return(
           <div className="maps-container">
                <h1>Maps</h1>

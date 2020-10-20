@@ -1,7 +1,7 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
-import Gallery from '../components/Gallery.js'
 
+import Gallery from '../components/Gallery.js'
+import styled from 'styled-components'
 class GalleryContainer extends React.Component {
 
      state = {
@@ -31,7 +31,7 @@ class GalleryContainer extends React.Component {
           .then(resp => resp.json())
           .then(paintings => {
      
-               console.log(paintings)
+               
             this.setState({ api: paintings,
           total_rooms: Math.ceil(paintings.length/6)- 1})
             
@@ -43,10 +43,17 @@ class GalleryContainer extends React.Component {
      
      
      render(){
-          console.log("GC", this.state.api)
+          
           return(
                <div className="GalleryContainer">
-                    <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)} history={this.props.history}/>
+                    { this.state.api.length === 0 ? 
+                    <Center>
+                         <img src={'/assets/loading.gif'} />
+                         
+                    </Center>
+                     :
+                         <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)} history={this.props.history}/>
+                    }
                </div>
 
 
@@ -60,3 +67,10 @@ class GalleryContainer extends React.Component {
 }
 
 export default GalleryContainer 
+
+const Center = styled.div`
+     width: 100vh,
+     height: 100vw,
+     margin: 50px auto
+
+`

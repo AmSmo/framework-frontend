@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Link, withRouter } from 'react-router-dom';
+=======
+import { Link} from 'react-router-dom';
+>>>>>>> main
 import { Input, Menu, Dropdown } from 'semantic-ui-react'
 
 
@@ -48,11 +52,12 @@ class NavBar extends React.Component {
   
       return (<div>
         <Menu pointing>
+        
+    
             <Menu.Item
               name='Logout'
               as={Link}
-              to="/logout"
-              active={activeItem==='Logout'}
+              to='/logout'
               onClick={this.props.logout}
             />
               <Menu.Item
@@ -80,6 +85,11 @@ class NavBar extends React.Component {
           <Menu.Item>
             <Dropdown name="floor" text="Museum Maps" options={floors}  onChange={this.dropdownChange}/>
           </Menu.Item>
+<<<<<<< HEAD
+=======
+          
+          
+>>>>>>> main
           <Menu.Menu position='right'>
             <form onSubmit={this.props.searchHandler}>
               <Menu.Item>

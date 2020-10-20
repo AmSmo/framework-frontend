@@ -5,12 +5,12 @@ import GalleryContainer from './containers/GalleryContainer.js'
 import NavBar from './containers/NavBar.js'
 import Login from './components/Login.js'
 import Signup from './components/Signup.js'
-import { Redirect, useHistory, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import SearchContainer from './containers/SearchContainer.js'
 import MapContainer from './containers/MapContainer.js'
 import PaintingContainer from './containers/PaintingContainer.js'
 import MyGallery from './containers/MyGallery.js'
-
+import Welcome from './components/Welcome'
 const BASE_API = "http://localhost:3001/"
 
 class App extends React.Component {
@@ -28,8 +28,8 @@ class App extends React.Component {
             { Authorization: `Bearer ${token}`}})
       .then(resp => resp.json())
       .then(data => {
-        this.setState({user: data })
-        console.log(data, token)
+        this.setState({user: data.user })
+        
       })
     
   }
@@ -59,15 +59,15 @@ class App extends React.Component {
       .then(resp => resp.json())
       .then(data => {
         localStorage.setItem("token", data.jwt)
-        this.setState({ user: data.user.id })
+        this.setState({ user: data.user })
       })
   }
   
-  signupHandler = (e) => {
+  signupHandler = (e, portrait) => {
     const username = (e.target.username.value)
     const password = e.target.password.value
     const passwordConfirmation = e.target.passwordConfirmation.value
-    let user = { username, password }
+    let user = { username, password, portrait }
     let configObj = {
       method: "POST",
       headers: {"accepts": "application/json",
@@ -79,7 +79,7 @@ class App extends React.Component {
     .then(resp => resp.json())
     .then(data => {
       localStorage.setItem("token", data.jwt)
-      this.setState({user: data.user.id})
+      this.setState({user: data.user})
       this.props.history.push("/maps")})
     }
       
@@ -96,15 +96,30 @@ class App extends React.Component {
   return (
      <div className="App">
       <NavBar searchHandler={this.searchHandler} logout={this.logout}/>
+        { this.state.user !== null ?
       <Switch>
+      
         <Route path="/search/:keyword" render={(routerprops) => <SearchContainer {...routerprops}/>} />
-        <Route path="/login" render={(routerprops) => <Login {...routerprops} loginHandler={this.loginHandler}/>} />
+        <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user}/>} />
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
         <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
+<<<<<<< HEAD
         <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
+=======
+        <Route path="/maps/" render={(routerprops) => <MapContainer {...routerprops} />}/>
+>>>>>>> main
         <Route path="/paintings/:paintingId" render={(routerprops) => <PaintingContainer {...routerprops} />}/>
         <Route path="/favorites" render={(routerprops) => <MyGallery {...routerprops} />}/>
+        <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} />}/>
       </Switch>
+        
+        :
+        <Switch>
+          <Route path="/login" render={(routerprops) => <Login {...routerprops} loginHandler={this.loginHandler} />} />
+          <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
+          <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} />}/>
+        </Switch>
+  }
     </div>
     
   )
