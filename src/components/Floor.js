@@ -65,56 +65,76 @@ function Floor(props){
                     src={(imgTwo)}
                     map={mapAreaTwo}
                     onMapClick={onMapClick}
+                    // style={BoxTwo}
                     />
           ),
           [mapAreaTwo, imgTwo]
      );
 
      
- 
+ const renderMapOne = () => {
+          return (
+                <div className="mapOne">
+                  {ImageMapComponentOne}    
+                </div>
+          )
+     }
 
 
-  const renderMapTwo = () => {
+     const renderMapTwo = () => {
        return (
-
+ <Box>
  <div className="mapTwo">
      {ImageMapComponentTwo}
 </div>
-
+</Box>
        )
   }
 
-const renderMapOne = () => {
+
+
+const renderBoth = () => {
      return (
-           <div className="mapOne">
-             {ImageMapComponentOne}    
-           </div>
+          <>
+      <div className="mapOne">
+        {ImageMapComponentOne}    
+          </div>
+          <div className="mapTwo">
+          {ImageMapComponentTwo}
+          </div>
+          </>
      )
 }
    
 
 
-if(props.match.params.id === "1"){
+
+
+
+
+
+if(props.match.path === "/maps") {
+     console.log(props)
+     return (
+     renderBoth()
+     )
+} else if(props.match.params.id === "1"){
           return(
      renderMapOne()
           )
-     }
-      else if(props.match.params.id === "2") {
+} else if(props.match.params.id === "2"){
           return(
-          renderMapTwo()
+     renderMapTwo()
           )
      }
-     else {
-          console.log(props)
-          return (
-          <div>huh</div>
-          )
-     }
+
+     
+
+
+}
+     
         
-//       <>
-//        {renderMapOne()}
-//        {renderMapTwo()}
-// </>
+
 
      
   
@@ -124,10 +144,16 @@ if(props.match.params.id === "1"){
 
 
 
-}
+
 export default Floor
 
 const Box = styled.div`
+// display: block;
+width: 100%;
+height: auto;
+position: absolute;
+bottom: 0;
+
 
 `
 const BoxTwo = styled.div`

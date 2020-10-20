@@ -31,10 +31,7 @@ class MapContainer extends React.Component {
      
      
      render(){
-          //      if(this.props.history.location === "/maps/1"){
-          //          return("gotcha")
-          //     }
-              
+  
 
           return(
           <div className="maps-container">

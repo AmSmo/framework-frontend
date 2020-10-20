@@ -26,7 +26,7 @@ class NavBar extends React.Component {
 
   dropdownChange = (e, result) => {
     if(result.value === "All Floors"){
-     this.props.history.push("/maps")
+     this.props.history.push("/maps/")
    } else if(result.value === "First Floor"){
     this.props.history.push("/maps/1")
    } else if(result.value === "Second Floor"){
