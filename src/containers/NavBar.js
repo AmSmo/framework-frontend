@@ -49,13 +49,15 @@ class NavBar extends React.Component {
       return (<div>
         <Menu pointing>
         
-    
+        {localStorage.token ?
             <Menu.Item
               name='Logout'
               as={Link}
               to='/logout'
               onClick={this.props.logout}
             />
+            :
+            <>
               <Menu.Item
                 name='Login'
                 as={Link}
