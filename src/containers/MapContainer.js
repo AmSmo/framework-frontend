@@ -34,13 +34,13 @@ class MapContainer extends React.Component {
   
 
           return(
-          <div className="maps-container">
+          <>
                <h1>Maps</h1>
                <Switch>
                <Route path='/maps/:id' render={(routerprops) => <Floor history={this.props.history} {...routerprops}/>}/>
                <Route path="/maps" render={(routerprops) => <Floor history={this.props.history} {...routerprops}  />}/>
                </Switch>
-          </div>
+          </>
                )
      }
 }

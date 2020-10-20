@@ -6,7 +6,7 @@ import { withRouter} from 'react-router-dom'
 function Floor(props){
 
      const onMapClick = (area: AreaType, galleryId: number) => {
-          props.history.push(`galleries/${area.galleryId}`)
+          props.history.push(`/galleries/${area.galleryId}`)
           
      }
     
@@ -84,9 +84,9 @@ function Floor(props){
      const renderMapTwo = () => {
        return (
  <Box>
- <div className="mapTwo">
+ 
      {ImageMapComponentTwo}
-</div>
+
 </Box>
        )
   }
@@ -148,13 +148,9 @@ if(props.match.path === "/maps") {
 export default Floor
 
 const Box = styled.div`
-// display: block;
-width: 100%;
-height: auto;
-position: absolute;
-bottom: 0;
-
-
+top: 40px;
+height: 450px;
+width: 300px;
 `
 const BoxTwo = styled.div`
 margin: 30px auto;

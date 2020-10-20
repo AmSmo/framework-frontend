@@ -24,7 +24,11 @@ body {
   }
 }
 
-
+.not-athing{
+  background-size: ;
+  background-clip: content-box;
+  flex-shrink: 1;
+}
 
 
 

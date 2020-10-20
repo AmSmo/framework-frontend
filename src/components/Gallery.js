@@ -181,7 +181,7 @@ function leftThree(width, height){
           marginLeft: `${(width / 1357) * 180}px`,
           top: "37vh",
      opacity: "1",
-          transform: `rotate3d(2, -172, -3, -${ width / -1357 *  47}deg)`}
+          transform: `rotate3d(2, -172, -3, -${ width / 1357 *  47}deg)`}
 }
 function rightOne(width, height){return{
      
