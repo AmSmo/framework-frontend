@@ -1,7 +1,6 @@
-import React from "react"
-import { ImageMap, Area } from '@qiuz/react-image-map'
-import Floor from '../components/Floor.js'
- 
+import React from "react";
+import { ImageMap, Area } from '@qiuz/react-image-map';
+import Floor from '../components/Floor.js';
 
 class MapContainer extends React.Component {
 
@@ -18,10 +17,8 @@ class MapContainer extends React.Component {
           })
           .then(resp => resp.json())
           .then(paintings => {
-     
             
             this.setState({ api: paintings})
-            console.log(paintings)
           })
           .catch(console.log)
       
@@ -33,16 +30,16 @@ class MapContainer extends React.Component {
      
      
      render(){
+          
           return(
           <div className="maps-container">
                <h1>Maps</h1>
+    
                <Floor history={this.props.history} />
           </div>
                )
      }
-
-
-
 }
 
-export default MapContainer 
+
+export default MapContainer

@@ -71,6 +71,7 @@ normal = (e) => {
             <p>{this.state.painting.dated} </p>
             <p>{this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
+
          
            
         </Item>
@@ -99,6 +100,8 @@ background-color: #ffe;
 margin: 0px auto;
 `
 
+
+
 const Background = styled.div`
-background-color: #640D14
+background-color: #0A8A8A 
 `

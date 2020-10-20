@@ -74,48 +74,15 @@ function Floor(props){
      // if this.props.match.mapId === 3 
      // <Immap1>
 
+
+
      return (
               <div>
-                    {ImageMapComponentOne}
-           
-              
-                    {ImageMapComponentTwo}
+                   <Box> {ImageMapComponentOne} </Box>
+                    <BoxTwo>{ImageMapComponentTwo}</BoxTwo>
                </div>
           
      )
-
-<<<<<<< HEAD
-     // renderBothMaps = () => {
-     //      return (
-     //           <Box>
-     //                {ImageMapComponentOne}
-                    
-     //                {ImageMapComponentTwo}
-               
-     //           </Box>
-     //      )
-     // }
-
-     // renderMapOne = () => {
-     //      return (
-     //           <Box>
-     //                {ImageMapComponentOne}
-     //           </Box>    
-     //      ) 
-     // }
-
-     // renderMapTwo = () => {
-     //      return (
-     //           <Box>
-     //                {ImageMapComponentTwo}
-     //           </Box>  
-     //      )
-     // }
-          
-=======
-        
->>>>>>> main
-
 
 }
 export default Floor
@@ -125,5 +92,13 @@ margin: 30px auto;
 display: block;
 width: 1100px;
 height: 1200px;
+position: relative;
 
+`
+const BoxTwo = styled.div`
+margin: 30px auto;
+display: none;
+width: 1100px;
+height: 1200px;
+position: relative;
 `
