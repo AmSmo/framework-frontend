@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Card, Icon, Image, Button, Comment, Form, Item, Input } from 'semantic-ui-react';
+import { Button, Form} from 'semantic-ui-react';
 import styled from 'styled-components'
 
 
