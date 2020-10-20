@@ -1,7 +1,6 @@
-import React from "react"
-
-import Floor from '../components/Floor.js'
- 
+import React from "react";
+import Floor from '../components/Floor.js';
+import {Route, Switch} from 'react-router-dom'
 
 class MapContainer extends React.Component {
 
@@ -18,7 +17,6 @@ class MapContainer extends React.Component {
           })
           .then(resp => resp.json())
           .then(paintings => {
-     
             
             this.setState({ api: paintings})
            
@@ -33,17 +31,19 @@ class MapContainer extends React.Component {
      
      
      render(){
-         
+  
+
           return(
           <div className="maps-container">
                <h1>Maps</h1>
-               <Floor history={this.props.history} />
+               <Switch>
+               <Route path='/maps/:id' render={(routerprops) => <Floor history={this.props.history} {...routerprops}/>}/>
+               <Route path="/maps" render={(routerprops) => <Floor history={this.props.history} {...routerprops}  />}/>
+               </Switch>
           </div>
                )
      }
-
-
-
 }
 
-export default MapContainer 
+
+export default MapContainer

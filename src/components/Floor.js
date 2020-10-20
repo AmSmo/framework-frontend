@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageMap, Area } from '@qiuz/react-image-map';
-import { Container } from 'semantic-ui-react';
 import styled from 'styled-components'
+import { withRouter} from 'react-router-dom'
 
 function Floor(props){
 
@@ -65,61 +65,101 @@ function Floor(props){
                     src={(imgTwo)}
                     map={mapAreaTwo}
                     onMapClick={onMapClick}
+                    // style={BoxTwo}
                     />
           ),
           [mapAreaTwo, imgTwo]
      );
 
      
-     // if this.props.match.mapId === 3 
-     // <Immap1>
+ const renderMapOne = () => {
+          return (
+                <div className="mapOne">
+                  {ImageMapComponentOne}    
+                </div>
+          )
+     }
 
+
+     const renderMapTwo = () => {
+       return (
+ <Box>
+ <div className="mapTwo">
+     {ImageMapComponentTwo}
+</div>
+</Box>
+       )
+  }
+
+
+
+const renderBoth = () => {
      return (
-              <div>
-                    {ImageMapComponentOne}
-           
-              
-                    {ImageMapComponentTwo}
-               </div>
-          
+          <>
+      <div className="mapOne">
+        {ImageMapComponentOne}    
+          </div>
+          <div className="mapTwo">
+          {ImageMapComponentTwo}
+          </div>
+          </>
      )
+}
+   
 
-     // renderBothMaps = () => {
-     //      return (
-     //           <Box>
-     //                {ImageMapComponentOne}
-                    
-     //                {ImageMapComponentTwo}
-               
-     //           </Box>
-     //      )
-     // }
 
-     // renderMapOne = () => {
-     //      return (
-     //           <Box>
-     //                {ImageMapComponentOne}
-     //           </Box>    
-     //      ) 
-     // }
 
-     // renderMapTwo = () => {
-     //      return (
-     //           <Box>
-     //                {ImageMapComponentTwo}
-     //           </Box>  
-     //      )
-     // }
-          
+
+
+
+
+if(props.match.path === "/maps") {
+     console.log(props)
+     return (
+     renderBoth()
+     )
+} else if(props.match.params.id === "1"){
+          return(
+     renderMapOne()
+          )
+} else if(props.match.params.id === "2"){
+          return(
+     renderMapTwo()
+          )
+     }
+
+     
 
 
 }
+     
+        
+
+
+     
+  
+   
+   
+        
+
+
+
+
 export default Floor
 
 const Box = styled.div`
+// display: block;
+width: 100%;
+height: auto;
+position: absolute;
+bottom: 0;
+
+
+`
+const BoxTwo = styled.div`
 margin: 30px auto;
-display: block;
+display: none;
 width: 1100px;
 height: 1200px;
-
+position: relative;
 `

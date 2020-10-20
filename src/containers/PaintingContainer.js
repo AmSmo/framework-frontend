@@ -61,20 +61,20 @@ normal = (e) => {
         return (
             <>
             <Background>
-          <div className="painting-info">
-           
         <Item>
-        <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="huge" centered/></Frame>
+       <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="huge" centered/> </Frame>
+    
         <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} </p>
             <p>{this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
+
          
            
         </Item>
-          </div>
+       
 
           <div className="fave-comment">
             {this.state.clicked? <FavoriteForm submitHandler={this.submitHandler}/> : null}
@@ -99,6 +99,10 @@ background-color: #ffe;
 margin: 0px auto;
 `
 
+
+
 const Background = styled.div`
-background-color: #640D14
+background-color: #0A8A8A 
 `
+
+
