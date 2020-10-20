@@ -1,5 +1,6 @@
 import React from "react";
 import Floor from '../components/Floor.js';
+import {Route, Switch} from 'react-router-dom'
 
 class MapContainer extends React.Component {
 
@@ -30,12 +31,18 @@ class MapContainer extends React.Component {
      
      
      render(){
-         
+          //      if(this.props.history.location === "/maps/1"){
+          //          return("gotcha")
+          //     }
+              
+
           return(
           <div className="maps-container">
                <h1>Maps</h1>
-    
-               <Floor history={this.props.history} />
+               <Switch>
+               <Route path='/maps/:id' render={(routerprops) => <Floor history={this.props.history} {...routerprops}/>}/>
+               <Route path="/maps" render={(routerprops) => <Floor history={this.props.history} {...routerprops}  />}/>
+               </Switch>
           </div>
                )
      }

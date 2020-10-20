@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageMap, Area } from '@qiuz/react-image-map';
 import styled from 'styled-components'
+import { withRouter} from 'react-router-dom'
 
 function Floor(props){
 
@@ -70,28 +71,63 @@ function Floor(props){
      );
 
      
-     // if this.props.match.mapId === 3 
-     // <Immap1>
+ 
 
 
+  const renderMapTwo = () => {
+       return (
 
+ <div className="mapTwo">
+     {ImageMapComponentTwo}
+</div>
+
+       )
+  }
+
+const renderMapOne = () => {
      return (
-              <div>
-                   <Box> {ImageMapComponentOne} </Box>
-                    <BoxTwo>{ImageMapComponentTwo}</BoxTwo>
-               </div>
-          
+           <div className="mapOne">
+             {ImageMapComponentOne}    
+           </div>
      )
+}
+   
+
+
+if(props.match.params.id === "1"){
+          return(
+     renderMapOne()
+          )
+     }
+      else if(props.match.params.id === "2") {
+          return(
+          renderMapTwo()
+          )
+     }
+     else {
+          console.log(props)
+          return (
+          <div>huh</div>
+          )
+     }
+        
+//       <>
+//        {renderMapOne()}
+//        {renderMapTwo()}
+// </>
+
+     
+  
+   
+   
+        
+
+
 
 }
 export default Floor
 
 const Box = styled.div`
-margin: 30px auto;
-display: block;
-width: 1100px;
-height: 1200px;
-position: relative;
 
 `
 const BoxTwo = styled.div`

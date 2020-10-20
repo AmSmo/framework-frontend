@@ -30,7 +30,7 @@ class NavBar extends React.Component {
    } else if(result.value === "First Floor"){
     this.props.history.push("/maps/1")
    } else if(result.value === "Second Floor"){
-    this.props.history.push("maps/2")
+    this.props.history.push("/maps/2")
    }
    }
 
@@ -73,6 +73,8 @@ class NavBar extends React.Component {
                 active={activeItem === 'Signup'}
                 onClick={this.handleItemClick}
               />
+            </>
+          }
           <Menu.Item
             name='My Gallery'
             as={Link}

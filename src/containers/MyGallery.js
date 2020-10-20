@@ -21,8 +21,7 @@ class MyGallery extends React.Component {
                        Authorization: `Bearer ${token}`}})
             .then(resp => resp.json())
             .then(data => {
-              console.log(data)
-          //     this.setState({ favorites : data.paintings})
+              this.setState({ favorites : data.paintings})
             })
           
         }
