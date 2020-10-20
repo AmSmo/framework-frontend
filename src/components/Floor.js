@@ -11,7 +11,7 @@ function Floor(props){
      }
     
 
-
+     
      const imgOne = "/assets/FirstFloor.jpg"
 
      const mapAreaOne = [
@@ -70,7 +70,7 @@ function Floor(props){
           [mapAreaTwo, imgTwo]
      );
 
-
+     
      // if this.props.match.mapId === 3 
      // <Immap1>
 

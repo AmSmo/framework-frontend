@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { Input, Menu, Dropdown } from 'semantic-ui-react'
 
 class NavBar extends React.Component {
@@ -36,13 +36,15 @@ class NavBar extends React.Component {
     const floors = [
       {key: "All Floors", text: "All Floors", value: "All Floors"}, 
       {key: "First Floor", text: "First Floor", value: "First Floor"},  
-      {key: "First Floor", text: "First Floor", value: "First Floor"}]
+      {key: "Second Floor", text: "Second Floor", value: "Second Floor"}]
       return (<div>
         <Menu pointing>
+        
           {localStorage.token ?
             <Menu.Item
               name='Logout'
               as={Link}
+              to='/logout'
               onClick={this.props.logout}
             />
             :
@@ -75,6 +77,7 @@ class NavBar extends React.Component {
           <Menu.Item>
             <Dropdown name="Museum Maps" text="Museum Maps" options={floors} onChange={this.dropdownChange}  as={Link} to="/maps" />
           </Menu.Item>
+          
           
           <Menu.Menu position='right'>
             <form onSubmit={this.props.searchHandler}>

@@ -5,11 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css'
-import {ImageMap, Area} from '@qiuz/react-image-map';
 
-interface AreaType extends Area {
-  href?: string;
-}
 
 
 ReactDOM.render(

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Card, Icon, Image, Button, Comment, Form, Item } from 'semantic-ui-react'
+import { Item } from 'semantic-ui-react'
 import styled from 'styled-components'
 import FavoriteForm from '../components/FavoriteForm'
 
@@ -14,7 +14,7 @@ state = {
     componentDidMount = () => {
         let token = localStorage.getItem("token")
         const paintingId = (this.props.match.params.paintingId)
-        console.log(paintingId)
+        
         fetch(`http://localhost:3001/paintings/${paintingId}`, {
         method: "GET", 
         headers: 
