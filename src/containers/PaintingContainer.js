@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { Item, Comment, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 import FavoriteForm from '../components/FavoriteForm'
 
@@ -7,8 +7,12 @@ class PaintingContainer extends React.Component {
 
 state = {
   painting : [],
-  clicked: false
-}
+  clicked: false,
+  comment: "",
+  portrait: "",
+  username: ""
+  }
+
 
 
     componentDidMount = () => {
@@ -41,11 +45,46 @@ state = {
         "Content-type": "application/json"},
         body: JSON.stringify({ painting : this.state.painting, comment})})
         .then(resp => resp.json())
-        .then(console.log)
-        .catch(console.log)
+        .then(data => {
+          console.log(data.user.portrait)
+          this.setState({
+            comment : data.comment.comment,
+            portrait : data.user.portrait,
+            username : data.user.username
+          })
+        })
       }
       
+        
+        
+          
       
+    renderComment = () => {
+      if(this.state.comment.length > 0)
+      return (
+        this.state.comment
+      )
+    }
+
+    renderImage = () => {
+      return (
+        this.state.portait
+      )
+    }
+
+    renderUsername = () => {
+      return (
+        this.state.username
+      )
+    }
+      
+      
+   
+      
+goBack = () => {
+  this.props.history.goBack()
+}
+
       
 colorChange = (e) => {
   e.target.style.color = "gold"
@@ -57,36 +96,51 @@ normal = (e) => {
       
     
  
-    render() {
+  render() {
         return (
-            <>
+           
             <Background>
         <Item>
        <img style={frameStyle} alt="painting image" src={this.state.painting.image}   size="huge" centered/>
     
-        <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
+        <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal} centered></i>
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} </p>
             <p>{this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
+       </Item>
+          <>
+      <Comment.Group>
+      <Comment>
+      <Comment.Avatar alt="" src={this.renderImage()} />
+      <Comment.Content>
+        <Comment.Author as='Username'> </Comment.Author>
+        <Comment.Text>{this.renderComment()}</Comment.Text>      
+      </Comment.Content>  
+      </Comment>
+      </Comment.Group>
+      </>
+      
+      <p> {this.renderUsername()}</p>
 
-         
-           
-        </Item>
-       
+    
+       <>
+       <div className="fave-comment">
+        {this.state.clicked? <FavoriteForm submitHandler={this.submitHandler}/> : null}
+        </div>
+      </>
 
-          <div className="fave-comment">
-            {this.state.clicked? <FavoriteForm submitHandler={this.submitHandler}/> : null}
-        
-      </div>
+         <Button inverted color='red' onClick={this.goBack}>
+           Back to Gallery
+         </Button>
       </Background>
-           </> 
+    
         )
 
     }
 
-}
+  }
 
 export default PaintingContainer
 
@@ -112,9 +166,10 @@ const frameStyle = {
   "height": "400px",
   border: "10px solid transparent",
   padding: "40px",
-  backgroundImage: "url('/assets/splash2.png')",
-  "-moz-border-image": "url('/assets/splash2.png')",
-  "-webkit-border-image": "url('/assets/splash2.png')",
-  "-o-border-image": "url('/assets/splash2.png')",
-  "border-image": "url('/assets/splash2.png')"
+   border_image_source: "url('/assets/splash2.png')",
+  // backgroundImage: "url('/assets/splash2.png')"
+  // "-moz-border-image": "url('/assets/splash2.png')"
+  // "-webkit-border-image": "url('/assets/splash2.png')"
+  // "-o-border-image": "url('/assets/splash2.png')",
+  // "border-image": "url('/assets/splash2.png')",
 }
