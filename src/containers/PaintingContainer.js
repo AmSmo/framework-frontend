@@ -62,7 +62,7 @@ normal = (e) => {
             <>
             <Background>
         <Item>
-       <Frame><Item.Image alt="painting image" src={this.state.painting.image} wrapped ui={false} size="huge" centered/> </Frame>
+       <img style={frameStyle} alt="painting image" src={this.state.painting.image}   size="huge" centered/>
     
         <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
          <h1>{this.state.painting.title}</h1>
@@ -106,3 +106,15 @@ background-color: #0A8A8A
 `
 
 
+const frameStyle = {
+  display: "inline-block",
+  margin: "20px, auto",
+  "height": "400px",
+  border: "10px solid transparent",
+  padding: "40px",
+  backgroundImage: "url('/assets/splash2.png')",
+  "-moz-border-image": "url('/assets/splash2.png')",
+  "-webkit-border-image": "url('/assets/splash2.png')",
+  "-o-border-image": "url('/assets/splash2.png')",
+  "border-image": "url('/assets/splash2.png')"
+}

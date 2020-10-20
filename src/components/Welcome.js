@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import Login from './Login'
-
+import { withRouter } from 'react-router-dom'
 class Welcome extends React.Component {
    
 
@@ -17,9 +17,9 @@ class Welcome extends React.Component {
                     
                     <img  onLoad={this.imageDimensions} src={this.props.user.portrait} style={{borderRadius: "40px"}}width="250px"/>
                     <Targets>
-                        <Target src={'/assets/otherusers.png'} />
-                        <Target src={'/assets/mygallery.png'} />
-                        <Target src={'/assets/floorplan.png'} />
+                            <Target src={'/assets/otherusers.png'} onClick={() => this.props.history.push('/users')} />
+                            <Target src={'/assets/mygallery.png'} onClick={() => this.props.history.push('/favorites')} />
+                            <Target src={'/assets/floorplan.png'} onClick={() => this.props.history.push('/maps')} />
     
                     </Targets>
                     
@@ -34,7 +34,7 @@ class Welcome extends React.Component {
 
 }
 
-export default Welcome
+export default withRouter(Welcome)
 const frameSplash = {
     // background: "rgba(10, 138, 10, 0.450)",
     background: `url('/assets/regalwallpaper.jpg')`,
