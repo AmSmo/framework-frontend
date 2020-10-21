@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import styled from 'styled-components'
 class Gallery extends React.Component {
 
@@ -59,7 +58,7 @@ class Gallery extends React.Component {
                if (idx % 2 === 0)
                return (
                
-                         <img onClick={() => this.clickHandler(painting)} src={painting.image} style={ this.where(idx) } />
+                    <img key={idx} onClick={() => this.clickHandler(painting)} src={painting.image} style={ this.where(idx) } />
                     )
           })
      }
@@ -67,7 +66,7 @@ class Gallery extends React.Component {
           return this.props.paintings.map((painting, idx) => {
                if (idx % 2 !== 0)
                return (
-                    <img onClick={() => this.clickHandler(painting)} src={painting.image} style={ this.where(idx) } />
+                    <img key={idx} className='scale-up-center' onClick={() => this.clickHandler(painting)} src={painting.image} style={ this.where(idx) } />
                     )
           })
      }
@@ -76,20 +75,47 @@ class Gallery extends React.Component {
      return (
           
           <BackgroundDiv>
+                    
                <Hall> 
-               <Left>
+               <Left className="fadein">
                     {this.leftSide()}
                </Left>
+               
+                    <ArrowForward src={'/assets/foward.png'} style={this.props.forward ? { opacity: "0" } : { opacity: ".8" }} onClick={this.props.moveForward}/>
+                    <ArrowBackward src={'/assets/foward.png'} style={this.props.backward ? { opacity: "0" } : { opacity: ".8" }} onClick={this.props.moveBackward}/>
+              
                <Right>
                     {this.rightSide()}
                </Right>
+               
                </Hall>
+               
+               
           </BackgroundDiv>
      )
 
 
      }}
 export default Gallery
+
+const ArrowForward= styled.img`
+     display:inline-block;
+     transform: rotate3D(67,-78,91,116deg);;
+     opacity: .8;
+     height: 120px;
+     margin-top: 55vh;
+     margin-left: 35px;
+     opacity: .8 ;
+     
+`
+const ArrowBackward= styled.img`
+     transform: rotate3D(-161,-157,-243,116deg);
+     display:inline-block;
+     height: 120px;
+     margin-top: 65vh;
+     margin-left: 35px;
+     opacity: .8;
+`
 
 const Hall = styled.div`
      display: inline-block;
@@ -100,7 +126,7 @@ const Hall = styled.div`
 `
 const Right = styled.div`
      float: right;
-     height: 950px;
+     
      perspective: 1600px;
      margin: 3em 3vw; 
      width:100px;
@@ -109,17 +135,17 @@ const Right = styled.div`
      display: flex;
      
 `
-const Left = styled.div`
+const Left = styled.div.attrs(props => ({className: "fadein"}))`
      
      float:left;
-     height: 950px;
+     
      perspective: 1600px;
      margin: 3em 3vw; 
      width:100px;
      z-index: 10;
      margin-left: 50px;
      display: flex;
-     flex-shrinkg: 1;
+     flex-shrink: 1;
 `
 const BackgroundDiv = styled.div`
 content: ' ';
@@ -137,7 +163,7 @@ content: ' ';
     
   background-image: url("/assets/hallway.png"); 
     
-    background-size: cover;
+    
     background-position: center;
     -ms-background-size: cover;
     -o-background-size: cover;
@@ -150,64 +176,64 @@ content: ' ';
 function leftOne(width,height){ return {
      position: "fixed",
      left: "-3.5vw",
-     width: `${(width/1357)*280}px`,
-     maxHeight: `${height/1030 * 270}px`,
-     top: "40vh",
+     width: `${(width/1357)*260}px`,
+     maxHeight: `${height/1030 * 260}px`,
+     top: "35vh",
+     
      opacity: "1",
-     transform: "rotate3d(-2, -132, 1, -61deg)"}
+     transform: "rotate3d(-8, -128, -8, -52deg)"}
 }
 function leftTwo(width, height){return{
      position: "fixed",
      left: "10vw",
-     width: `${(width / 1357) * 280}px`,
-     maxHeight: `${height / 1030 * 270}px`,
-     top: "35vh",
+     width: `${(width / 1357) * 260}px`,
+     maxHeight: `${height / 1030 * 230}px`,
+     top: "33vh",
      marginLeft: "-00px",
-     opacity: "1",
-     transform: "rotate3d(8, -122, 2, -51deg)"}
+     opacity: ".95",
+     transform: "rotate3d(-8, -120, -8, -56deg)"}
 }
 function leftThree(width, height){
      
      return {position: "fixed",
      left: "10vw",
-          width: `${(width / 1357) * 280}px`,
-          maxHeight: `${height / 1030 * 270}px`,
+          width: `${(width / 1357) * 260}px`,
+          maxHeight: `${height / 1030 * 200}px`,
           marginLeft: `${(width / 1357) * 180}px`,
-          top: "37vh",
-     opacity: "1",
-          transform: `rotate3d(2, -172, -3, -${ width / 1357 *  47}deg)`}
+          top: "32vh",
+     opacity: ".9",
+          transform: `rotate3d(-9, -164, -13, -57deg)`}
 }
 function rightOne(width, height){return{
      
      position: "fixed",
-     right: "-4vw",
-     bottom: "32%",
-     // top: `${height * 0.32}px`,
-     width: `${(width/1357)*1.2*280}px`,
-     maxHeight: `${height / 1030 * 270}px`,
+     right: "-6vw",
+     
+     top: `29vh`,
+     width: `${(width/1357)*280}px`,
+     maxHeight: `${height / 1030 * 200}px`,
      zIndex: "10",     
-     transform: "rotate3d(6, 164, -10, -59deg)"
+     transform: "rotate3d(-14, 159, 16, -63deg)"
 }
 }
 function rightTwo(width, height){return{
      position: "fixed",
      right: "8vw",
-     width: `${(width/1357)*1.2*280}px`,
-     bottom: "31%",
-     // top: `${height * 0.30}px`,
-     maxHeight: `${height / 1030 * 270}px`,
+     width: `${(width/1357) *270}px`,
+     
+     top: `29vh`,
+     maxHeight: `${height / 1030 * 230}px`,
      zIndex: "10",
-     transform: "rotate3d(6, 193, -10, -54deg)"
+     transform: "rotate3d(-17, 177, 16, -62deg)"
 }
 }
 function rightThree(width, height){return{
      position: "fixed",
      right: "20vw",
-     width: `${(width/1357)*280*1.2}px`,
-     // top: `${height*0.28}px`,
-     bottom: "30%",
-     maxHeight: `${height / 1030 * 270}px`,
-     zIndex: "10",
-     transform: "rotate3d(6, 174, -10, -50deg)"
+     width: `${(width/1357)*280}px`,
+     top: `30vh`,
+     maxHeight: `${height / 1030 * 210}px`,
+     opacity: ".88",
+     transform: "rotate3d(-14, 184, 18, -62deg)"
 }
 }

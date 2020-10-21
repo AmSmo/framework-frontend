@@ -106,7 +106,11 @@ const renderBoth = () => {
    
 
 
-
+     if (props.gallery === "1") {
+          return (
+               renderMapOne()
+          )
+     }
 
 
 

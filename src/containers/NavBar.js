@@ -11,8 +11,14 @@ class NavBar extends React.Component {
     redirect: null
 
   }
+  keyHandler = (e) => {
+    if (e.keyCode === 13){
+      this.props.searchHandler(this.state.searchValue)
+    }
+  }
 
   search = (e) => {
+    
     this.setState({ searchValue: e.target.value })
   }
 
@@ -86,9 +92,9 @@ class NavBar extends React.Component {
             <Dropdown name="floor" text="Museum Maps" options={floors}  onChange={this.dropdownChange}/>
           </Menu.Item>
           <Menu.Menu position='right'>
-            <form onSubmit={this.props.searchHandler}>
+            <form onSubmit={e => e.preventDefault()}>
               <Menu.Item>
-                <Input onChange={this.search} name="search" value={this.state.searchValue} icon='search' placeholder='Search...' />
+                <Input onKeyDown={this.keyHandler} onChange={this.search} name="search" value={this.state.searchValue} icon='search' placeholder='Search...' />
               </Menu.Item>
             </form>
           </Menu.Menu>

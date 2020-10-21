@@ -35,11 +35,10 @@ class App extends React.Component {
   }
 }
 
-  searchHandler = (e) => {
-    e.preventDefault()
-    
-    let searchValue = (e.target.search.value)
-    this.props.history.push(`/search/${searchValue}`)
+
+  searchHandler = (artist) => {
+    console.log(artist)
+    this.props.history.push(`/search/${artist}`)
   }
 
   loginHandler = (e) => {
