@@ -74,9 +74,11 @@ function Floor(props){
      
  const renderMapOne = () => {
           return (
+          
                 <div className="mapOne">
                   {ImageMapComponentOne}    
                 </div>
+           
           )
      }
 
@@ -93,7 +95,7 @@ function Floor(props){
 
 const renderBoth = () => {
      return (
-          <>
+         <>
       <div className="mapOne">
         {ImageMapComponentOne}    
           </div>
@@ -101,6 +103,7 @@ const renderBoth = () => {
           {ImageMapComponentTwo}
           </div>
           </>
+ 
      )
 }
    
@@ -146,9 +149,8 @@ if(props.match.path === "/maps") {
 export default Floor
 
 const Box = styled.div`
-top: 40px;
-height: 450px;
-width: 300px;
+border: 5px
+border-style: solid
 `
 // const BoxTwo = styled.div`
 // margin: 30px auto;
@@ -157,3 +159,7 @@ width: 300px;
 // height: 1200px;
 // position: relative;
 // ``
+
+const Background = styled.div`
+background-color: #0A8A8A 
+`

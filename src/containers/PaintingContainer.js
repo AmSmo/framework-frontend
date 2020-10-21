@@ -107,22 +107,22 @@ normal = (e) => {
       
         <>
         <Item>
-       <Image alt="painting image" src={this.state.painting.image}   size="large" centered/>
+       <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="large" centered/></FrameTwo> 
     
         <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
-            <p>{this.state.painting.dated} </p>
-            <p>{this.state.painting.style}</p>
+            <p>{this.state.painting.dated} , {this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
        </Item>
           </>
-       
+       <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/>
+
       <MyComment> 
       <Comment> 
-        <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/>
+        {/* <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/> */}
       <Comment.Content>
-        <Comment.Author as='Username'>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Author>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
         <Comment.Text>{this.state.comment.length > 0 ? this.renderComment() : null} </Comment.Text>      
       </Comment.Content>  
       </Comment>
@@ -152,6 +152,17 @@ background-color: #ffe;
 margin: 0px auto;
 `
 
+
+const FrameTwo = styled.div`
+border-color: 0D0A8A;
+border-style: inset;
+border-width: 30px;
+width: 450px;
+background-color: 0D0A8A;
+margin: 0px auto;
+`
+
+
 const MyComment = styled.div`
 width: 450px;
 text-align: left;
@@ -173,7 +184,7 @@ background-color: #0A8A8A
 const frameStyle = {
   display: "inline-block",
   margin: "20px, auto",
-  "height": "400px",
+  height: "400px",
   border: "10px solid transparent",
   padding: "40px",
    border_image_source: "url('/assets/splash2.png')",
