@@ -109,12 +109,13 @@ const ArrowForward= styled.img`
      
 `
 const ArrowBackward= styled.img`
-     transform: rotate3D(-161,-157,-243,116deg);
+     transform: rotate3D(-161,-195,-243,116deg);
      display:inline-block;
      height: 120px;
-     margin-top: 65vh;
+     margin-top: 55vh;
      margin-left: 35px;
      opacity: .8;
+     bottom: 300px;
 `
 
 const Hall = styled.div`
@@ -181,7 +182,7 @@ function leftOne(width,height){ return {
      top: "35vh",
      
      opacity: "1",
-     transform: "rotate3d(-8, -128, -8, -52deg)"}
+     transform: "rotate3d(-32, -128, -15, -52deg)"}
 }
 function leftTwo(width, height){return{
      position: "fixed",
@@ -191,7 +192,7 @@ function leftTwo(width, height){return{
      top: "33vh",
      marginLeft: "-00px",
      opacity: ".95",
-     transform: "rotate3d(-8, -120, -8, -56deg)"}
+     transform: "rotate3d(-32, -157, -22, -56deg)"}
 }
 function leftThree(width, height){
      
@@ -202,7 +203,7 @@ function leftThree(width, height){
           marginLeft: `${(width / 1357) * 180}px`,
           top: "32vh",
      opacity: ".9",
-          transform: `rotate3d(-9, -164, -13, -57deg)`}
+          transform: `rotate3d(-26, -120, -18, -56deg)`}
 }
 function rightOne(width, height){return{
      
@@ -213,7 +214,7 @@ function rightOne(width, height){return{
      width: `${(width/1357)*280}px`,
      maxHeight: `${height / 1030 * 200}px`,
      zIndex: "10",     
-     transform: "rotate3d(-14, 159, 16, -63deg)"
+     transform: "rotate3d(-30, 156, 30, -70deg)"
 }
 }
 function rightTwo(width, height){return{
@@ -224,7 +225,7 @@ function rightTwo(width, height){return{
      top: `29vh`,
      maxHeight: `${height / 1030 * 230}px`,
      zIndex: "10",
-     transform: "rotate3d(-17, 177, 16, -62deg)"
+     transform: " rotate3d(-30, 177, 32, -63deg)"
 }
 }
 function rightThree(width, height){return{
@@ -234,6 +235,6 @@ function rightThree(width, height){return{
      top: `30vh`,
      maxHeight: `${height / 1030 * 210}px`,
      opacity: ".88",
-     transform: "rotate3d(-14, 184, 18, -62deg)"
+     transform: "rotate3d(-29, 184, 36, -63deg)"
 }
 }

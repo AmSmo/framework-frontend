@@ -14,13 +14,14 @@ class GalleryContainer extends React.Component {
           room_number: 0,
           total_rooms: 1,
           gallery: this.props.match.params.galleryId,
-          floor: 2
+          floor: 1
         }
 
 
      onMapClick = (area: AreaType) => {
           this.props.history.push(`/galleries/${area.galleryId}`)
-          return this.setState({gallery: `${area.galleryId}`})
+          this.setState({gallery: `${area.galleryId}`})
+          this.setState({ floor: this.whatFloor(area.galleryId) })
           
      }
 
@@ -68,19 +69,20 @@ class GalleryContainer extends React.Component {
      
                
             this.setState({ api: paintings,
-                 total_rooms: Math.ceil(paintings.length / 6) - 1, floor: this.whatFloor() })
+                 total_rooms: Math.ceil(paintings.length / 6) - 1})
+                  
 
            
           })
           .catch(console.log)
-      
+          
         }
     
      
-     whatFloor = () => {
-          if (floorOne.includes(parseInt(this.props.match.params.galleryId))){
+     whatFloor = (gall) => {
+          if (floorOne.includes(parseInt(gall))){
                return 1
-          } else if (floorTwo.includes(parseInt(this.props.match.params.galleryId))){
+          } else if (floorTwo.includes(parseInt(gall))){
                return 2
           }
      }
@@ -120,23 +122,5 @@ const Center = styled.div`
      height: 100vw,
      margin: 50px auto
 
-`
-
-const ArrowForward = styled.img`
-     display:inline-block;
-     transform: rotate3D(67,-78,91,116deg);;
-     opacity: .8;
-     height: 150px;
-     margin-top: 55vh;
-     margin-left: 35px;
-     opacity: .8 ;
-`
-const ArrowBackward = styled.img`
-     transform: rotate3D(-161,-157,-243,116deg);
-     display:inline-block;
-     height: 150px;
-     margin-top: 65vh;
-     margin-left: 35px;
-     opacity: .8;
 `
 

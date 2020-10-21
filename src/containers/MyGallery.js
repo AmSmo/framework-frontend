@@ -1,8 +1,9 @@
+
 import React from 'react'
 import Gallery from '../components/Gallery'
 import styled from 'styled-components'
 import {Button} from 'semantic-ui-react'
-const FAVE_API = "http://localhost:3001/users/favorites"     
+const FAVE_API = "http://localhost:3001/users/favorites/"
 
 
 class MyGallery extends React.Component {
@@ -17,7 +18,7 @@ class MyGallery extends React.Component {
      where = (idx, imgHeight) => {
           let adjusted_height = this.state.height
           let adjusted_width = this.state.width
-          console.log(imgHeight)
+          
           switch (idx) {
                case 0:
                     return rightOne(adjusted_width, adjusted_height)
@@ -63,7 +64,7 @@ class MyGallery extends React.Component {
                if (idx % 2 === 0 && idx < 6)
                     return (
 
-                         <img onClick={() => this.clickHandler(fav.painting)} src={fav.painting.image} style={this.where(idx, )} />
+                         <img key={idx} onClick={() => this.clickHandler(fav.painting)} src={fav.painting.image} style={this.where(idx, )} />
                     )
           })
      }
@@ -72,7 +73,7 @@ class MyGallery extends React.Component {
                
                if (idx % 2 !== 0 && idx < 6)
                     return (
-                         <img onClick={() => this.clickHandler(fav.painting)} src={fav.painting.image} style={this.where(idx)} />
+                         <img key={idx}  onClick={() => this.clickHandler(fav.painting)} src={fav.painting.image} style={this.where(idx)} />
                     )
           })
      }
@@ -80,8 +81,13 @@ class MyGallery extends React.Component {
      componentDidMount = () => {
           window.addEventListener('resize', this.updateDimensions)
           let token = localStorage.getItem("token")
+          let fetchHere = FAVE_API
+          if (this.props.match.params.userId){
+               
+               fetchHere =(FAVE_API + this.props.match.params.userId)
+          }
           if (token){
-            fetch(FAVE_API, {
+            fetch(fetchHere, {
               method: "GET", 
               headers: 
                   { "content-type": "application/json",
@@ -89,7 +95,7 @@ class MyGallery extends React.Component {
                        Authorization: `Bearer ${token}`}})
             .then(resp => resp.json())
             .then(data => {
-                 console.log(data)
+                 
               this.setState({ favorites : data.paintings_with_comments})
             })
           
@@ -106,7 +112,8 @@ class MyGallery extends React.Component {
       }
 
       render(){
-           console.log("state", this.state)
+          
+
            return (
                <Background>
            <Back> <Button inverted color='orange' onClick={this.goBack}> Back</Button> </Back>

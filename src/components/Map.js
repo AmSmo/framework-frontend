@@ -9,7 +9,7 @@ function Map(props) {
     console.log("map props", props.gallery === 2)
 
 
-    const imgOne = "/assets/FirstFloor.jpg"
+    const imgOne = "/assets/FirstFloor.png"
 
     const mapAreaOne = [
         { galleryId: 2300, "width": "22.33177022274326%", "height": "20.260105448154647%", "left": "13.481828839390387%", "top": "27.089630931458686%", "href": "" },
@@ -105,8 +105,8 @@ export default Map
 
 const Inline = styled.div`
 position: fixed;
-left: 43vw;
-height: 100px;
-width: 200px;
-bottom: 40px;
+left: 39vw;
+height: 280px;
+width: 400px;
+bottom: 20px;
 `

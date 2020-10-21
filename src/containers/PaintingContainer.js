@@ -104,8 +104,7 @@ normal = (e) => {
     
         return (
           <>
-            <img onLoad={this.imageDimensions} src={`/${this.state.portrait}`} style={{ borderRadius: "40px" }} width="250px" />
-          <img src={this.state.portait != "" ? this.state.portait : null} height="300px" width="300" px />
+          
             <Background>
         
           <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
@@ -113,7 +112,13 @@ normal = (e) => {
       
         <>
         <Item>
-       <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="large" centered/></FrameTwo> 
+       <FrameTwo>
+          {this.state.painting.length === 0? 
+                      <Image alt="painting image" src={'/assets/loading.gif'} size="large" centered />
+          :
+            <Image alt="painting image" src={this.state.painting.image}   size="large" centered/>
+          }
+         </FrameTwo> 
     
         <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
         

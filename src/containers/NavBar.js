@@ -98,6 +98,14 @@ class NavBar extends React.Component {
           <Menu.Item>
             <Dropdown name="floor" text="Museum Maps" options={floors}  onChange={this.dropdownChange}/>
           </Menu.Item>
+          <Menu.Item
+          
+            name='Community Galleries'
+            as={Link}
+            to="/galleries/others"
+            active={activeItem === 'Community Galleries'}
+            onClick={this.handleItemClick}
+          />
           <Menu.Menu position='right'>
             <form onSubmit={e => e.preventDefault()}>
               <Menu.Item>

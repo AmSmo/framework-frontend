@@ -5,15 +5,20 @@ import { withRouter } from 'react-router-dom'
 import { Form, Button} from 'semantic-ui-react'
 class Welcome extends React.Component {
    
+    state = {
+        clicked: false
+    }
+    formClick = () => {
+        this.setState((prevState) => ({ clicked: !prevState.clicked }))
+    }
 
-//     state = {
-//         description : ""
-//    }
+    colorChange = (e) => {
+        e.target.style.color = "gold"
+    }
 
-//    changeHandler = (e) => {
-//         this.setState({[e.target.name]: e.target.value})
-//    }
-
+    normal = (e) => {
+        e.target.style.color = "black"
+    }
 
     render() {
         
@@ -27,13 +32,13 @@ class Welcome extends React.Component {
                     
                     <img  onLoad={this.imageDimensions} src={this.props.user.portrait} style={{borderRadius: "40px"}}width="250px"/>
                     <Targets>
-                            <Target src={'/assets/otherusers.png'} onClick={() => this.props.history.push('/users')} />
+                            <Target src={'/assets/otherusers.png'} onClick={() => this.props.history.push('/galleries/others')} />
                             <Target src={'/assets/mygallery.png'} onClick={() => this.props.history.push('/favorites')} />
                             <Target src={'/assets/floorplan.png'} onClick={() => this.props.history.push('/maps')} />
     
                     </Targets>
-             
-          
+                        <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
+                        {this.state.clicked ? <> div </> : null}
              
      
                     
@@ -63,11 +68,11 @@ class Welcome extends React.Component {
 
 export default withRouter(Welcome)
 const frameSplash = {
-    // background: "rgba(10, 138, 10, 0.450)",
+    
     background: `url('/assets/regalwallpaper.jpg')`,
     height: "100vh",
     width: "100%",
-    // background: "red",
+   
     display: "inline-table",
     opacity: ".9"
 }
