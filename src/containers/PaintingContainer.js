@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Comment, Button, Image } from 'semantic-ui-react'
+import { Comment, Button, Image } from 'semantic-ui-react'
 import styled from 'styled-components'
 import FavoriteForm from '../components/FavoriteForm'
 
@@ -26,7 +26,7 @@ state = {
         .then(resp => resp.json())
         .then(painting => {
           console.log(painting)
-          if (painting.comment != ""){
+          if (painting.comment !== ""){
             this.setState({ painting: painting, comment: painting.comment, portrait: painting.user.portrait, username: painting.user.username}) 
           }else{
           this.setState({ painting : painting})
@@ -110,7 +110,6 @@ normal = (e) => {
         
       
         
-        {/* <Item> */}
        <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="huge" centered/></FrameTwo> 
     
         <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
@@ -118,12 +117,12 @@ normal = (e) => {
         <>
         <MyComment> 
         <Comment>       
-        {this.state.username != "" ?
+        {this.state.username !== "" ?
         <CommentFrame>
         <Comment.Avatar onLoad={this.imageDimensions} src={`/${this.state.portrait}`} style={{ borderRadius: "20px" }} width="75px" />
         <Comment.Content> 
-        <Comment.Author style={{fontWeight: "bold"}}>{this.state.username != "" ? this.renderUsername() : null}</Comment.Author>
-        <Comment.Text>{this.state.comment != "" ? this.renderComment() : null}</Comment.Text>      
+        <Comment.Author style={{fontWeight: "bold"}}>{this.state.username !== "" ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Text>{this.state.comment !== "" ? this.renderComment() : null}</Comment.Text>      
       </Comment.Content>
       </CommentFrame>
 
@@ -139,7 +138,6 @@ normal = (e) => {
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} , {this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
-       {/* </Item> */}
         
   
      
