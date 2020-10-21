@@ -73,24 +73,29 @@ function Floor(props){
      
  const renderMapOne = () => {
           return (
-               <MapOne>
+                
+           <MapOne>
                 <div className="mapOne">
                   {ImageMapComponentOne}    
                 </div>
                 </MapOne>
-           
+       
+
+              
           )
      }
 
 
      const renderMapTwo = () => {
        return (
-   
+ 
      <MapTwo>
           <div>
      {ImageMapComponentTwo}
           </div>
      </MapTwo>
+
+
        )
   }
 
@@ -98,6 +103,7 @@ function Floor(props){
 
 const renderBoth = () => {
      return (
+         
           <BothMaps>
       <div className="mapOne">
         {ImageMapComponentOne}    
@@ -109,7 +115,7 @@ const renderBoth = () => {
           </div>
           
           </BothMaps>
- 
+   
      )
 }
    
@@ -168,11 +174,15 @@ const MapTwo = styled.div`
 height: auto;
 width: 1100px;
 display: inline-block;
-margin-top: -50px
+margin-top: -50px;
 `
 
 const BothMaps = styled.div`
 height: auto;
 width: 1100px;
 display: inline-flex;
+`
+
+const Color = styled.div`
+background: #0EBABA;
 `

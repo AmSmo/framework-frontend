@@ -106,7 +106,7 @@ normal = (e) => {
      
             <Background>
   
-          <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
+          <Back> <Button color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
         
       
         
@@ -134,9 +134,11 @@ normal = (e) => {
 
 
         
-         <h1>{this.state.painting.title}</h1>
-            <h2>{this.state.painting.artist}</h2>
-            <p>{this.state.painting.dated} , {this.state.painting.style}</p>
+         <h1 style={{color: "gold" , fontSize: "40px", webkitTextStrokeWidth: "2px",
+    WebkitTextStrokeColor: "black"}}>{this.state.painting.title}</h1>
+            <h2 style={{color: "gold", fontSize: "30px" , webkitTextStrokeWidth: "1px",
+    WebkitTextStrokeColor: "black"}}>{this.state.painting.artist}</h2>
+            <p style={{color: "gold", FontSize: "20px"}}>{this.state.painting.dated} , {this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
         
   
@@ -154,6 +156,8 @@ normal = (e) => {
   }
 
 export default PaintingContainer
+
+
 
 const Frame = styled.div`
 border-color: #f4be52;
@@ -175,6 +179,9 @@ display: inline-flex;
 align-items: flex-end;
 `
 
+const Gold = styled.div`
+color: "#d4af37"
+` 
 
 const FrameTwo = styled.div`
 border-color: 0D0A8A;
@@ -199,8 +206,9 @@ text-align: right
 
 
 const Background = styled.div`
-background-color: #0A8A8A ;
-height: 100vh;
+// background-image: url("/assets/BlueWallpaper.png");
+background-image: url("/assets/RegalRed.jpg");
+height: 300vh;
 width: 100vw;
 display: inline-table
 `
