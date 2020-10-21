@@ -38,7 +38,7 @@ class App extends React.Component {
 
   searchHandler = (artist) => {
     console.log(artist)
-    this.props.history.push(`/search/${artist}`)
+    return this.props.history.push(`/search/${artist}`)
   }
 
   loginHandler = (e) => {
