@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Comment, Button } from 'semantic-ui-react'
+import { Item, Comment, Button, Image } from 'semantic-ui-react'
 import styled from 'styled-components'
 import FavoriteForm from '../components/FavoriteForm'
 
@@ -46,7 +46,7 @@ state = {
         body: JSON.stringify({ painting : this.state.painting, comment})})
         .then(resp => resp.json())
         .then(data => {
-          console.log(data.user.portrait)
+          console.log(data)
           this.setState({
             comment : data.comment.comment,
             portrait : data.user.portrait,
@@ -60,11 +60,11 @@ state = {
           
       
     renderComment = () => {
-      if(this.state.comment.length > 0)
-      return (
+      return(
         this.state.comment
       )
     }
+      
 
     renderImage = () => {
       return (
@@ -77,6 +77,7 @@ state = {
         this.state.username
       )
     }
+
       
       
    
@@ -100,42 +101,40 @@ normal = (e) => {
         return (
            
             <Background>
+            
+          <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
+        
+      
+        <>
         <Item>
-       <img style={frameStyle} alt="painting image" src={this.state.painting.image}   size="huge" centered/>
+       <Image alt="painting image" src={this.state.painting.image}   size="large" centered/>
     
-        <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal} centered></i>
+        <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} </p>
             <p>{this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
        </Item>
-          <>
-      <Comment.Group>
-      <Comment>
-      <Comment.Avatar alt="" src={this.renderImage()} />
+          </>
+       
+      <MyComment> 
+      <Comment> 
+        <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/>
       <Comment.Content>
-        <Comment.Author as='Username'> </Comment.Author>
-        <Comment.Text>{this.renderComment()}</Comment.Text>      
+        <Comment.Author as='Username'>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Text>{this.state.comment.length > 0 ? this.renderComment() : null} </Comment.Text>      
       </Comment.Content>  
       </Comment>
-      </Comment.Group>
-      </>
+        </MyComment>
       
-      <p> {this.renderUsername()}</p>
+      
 
-    
-       <>
        <div className="fave-comment">
-        {this.state.clicked? <FavoriteForm submitHandler={this.submitHandler}/> : null}
+        {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
         </div>
-      </>
-
-         <Button inverted color='red' onClick={this.goBack}>
-           Back to Gallery
-         </Button>
+      
       </Background>
-    
         )
 
     }
@@ -153,7 +152,18 @@ background-color: #ffe;
 margin: 0px auto;
 `
 
+const MyComment = styled.div`
+width: 450px;
+text-align: left;
+margin: 10px auto;
+margin-bottom: 10px;
+text-align: left;
+display: flex;
+`
 
+const Back = styled.div`
+text-align: right
+`
 
 const Background = styled.div`
 background-color: #0A8A8A 
