@@ -2,13 +2,19 @@ import React from 'react'
 import Map from "../components/Map"
 import Gallery from '../components/Gallery.js'
 import styled from 'styled-components'
+
+
+const floorOne = [2300, 2520, 3600, 2120, 2400, 2500, 2540, 3500]
+const floorTwo = [3620,2130,2340,2700,1440,2100,2220]
+
 class GalleryContainer extends React.Component {
 
      state = {
           api : [],
           room_number: 0,
           total_rooms: 1,
-          gallery: this.props.match.params.galleryId
+          gallery: this.props.match.params.galleryId,
+          floor: 2
         }
 
 
@@ -62,15 +68,23 @@ class GalleryContainer extends React.Component {
      
                
             this.setState({ api: paintings,
-          total_rooms: Math.ceil(paintings.length/6)- 1})
-            
+                 total_rooms: Math.ceil(paintings.length / 6) - 1, floor: this.whatFloor() })
+
+           
           })
           .catch(console.log)
       
         }
     
      
-     
+     whatFloor = () => {
+          if (floorOne.includes(parseInt(this.props.match.params.galleryId))){
+               return 1
+          } else if (floorTwo.includes(parseInt(this.props.match.params.galleryId))){
+               return 2
+          }
+     }
+
      render(){
           
           console.log(this.state)
@@ -84,7 +98,7 @@ class GalleryContainer extends React.Component {
                      :
                      <>
                          <Gallery paintings={this.state.api.slice((this.state.room_number * 6)).slice(0, 6)} moveForward={this.moveForward} moveBackward={this.moveBackward} backward={this.state.room_number === 0} forward={this.state.total_rooms === this.state.room_number} history={this.props.history}/>
-                         <Map gallery="1" history={this.props.history} onMapClick={this.onMapClick} />
+                         <Map gallery={this.state.floor} history={this.props.history} onMapClick={this.onMapClick} />
                          </>
                     }
                </div>

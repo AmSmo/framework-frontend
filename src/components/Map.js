@@ -6,7 +6,7 @@ import styled from 'styled-components'
 function Map(props) {
 
     
-
+    console.log("map props", props.gallery === 2)
 
 
     const imgOne = "/assets/FirstFloor.jpg"
@@ -80,16 +80,21 @@ function Map(props) {
 
     const renderMapTwo = () => {
         return (
-            <div>
+            <Inline>
                 {ImageMapComponentTwo}
-            </div>
+            </Inline>
         )
     }
 
 
-    if (props.gallery === "1") {
+    if (props.gallery === 1) {
         return (
             renderMapOne()
+        )
+    }else if (props.gallery === 2 ){
+        console.log("HERHERHER")
+        return (
+            renderMapTwo()
         )
     }
 

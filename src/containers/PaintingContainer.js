@@ -26,7 +26,11 @@ state = {
         .then(resp => resp.json())
         .then(painting => {
           console.log(painting)
+          if (painting.comment != ""){
+            this.setState({ painting: painting, comment: painting.comment, portrait: painting.user.portrait, username: painting.user.username}) 
+          }else{
           this.setState({ painting : painting})
+          }
         })
     }
 
@@ -46,7 +50,7 @@ state = {
         body: JSON.stringify({ painting : this.state.painting, comment})})
         .then(resp => resp.json())
         .then(data => {
-          console.log(data)
+          
           this.setState({
             comment : data.comment.comment,
             portrait : data.user.portrait,
@@ -97,11 +101,13 @@ normal = (e) => {
     
  
   render() {
-        return (
     
+        return (
+          <>
+            <img onLoad={this.imageDimensions} src={`/${this.state.portrait}`} style={{ borderRadius: "40px" }} width="250px" />
+          <img src={this.state.portait != "" ? this.state.portait : null} height="300px" width="300" px />
             <Background>
         
-            
           <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
         
       
@@ -110,11 +116,18 @@ normal = (e) => {
        <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="large" centered/></FrameTwo> 
     
         <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
+        
         <MyComment> 
       <Comment>       
       <Comment.Content>
-        <Comment.Author>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
-        <Comment.Text>{this.state.comment.length > 0 ? this.renderComment() : null} </Comment.Text>      
+        {this.state.username != "" ?
+        <Frame>
+          
+        <Comment.Author>{this.state.username != "" ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Text>{this.state.comment != "" ? this.renderComment() : null} </Comment.Text>      
+        </Frame>
+        :
+        null}
         {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
       </Comment.Content>  
       </Comment>
@@ -133,7 +146,7 @@ normal = (e) => {
     
      
       </Background>
-  
+  </>
 
 
 

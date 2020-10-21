@@ -12,7 +12,7 @@ function Floor(props){
     
 
      
-     const imgOne = "/assets/FirstFloor.jpg"
+     const imgOne = "/assets/FirstFloor.jgg"
 
      const mapAreaOne = [
      {galleryId: 2300, "width":"22.33177022274326%","height":"20.260105448154647%","left":"13.481828839390387%","top":"27.089630931458686%","href":""},
