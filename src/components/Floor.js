@@ -65,7 +65,6 @@ function Floor(props){
                     src={(imgTwo)}
                     map={mapAreaTwo}
                     onMapClick={onMapClick}
-                    // style={BoxTwo}
                     />
           ),
           [mapAreaTwo, imgTwo]
@@ -74,10 +73,11 @@ function Floor(props){
      
  const renderMapOne = () => {
           return (
-          
+               <Box>
                 <div className="mapOne">
                   {ImageMapComponentOne}    
                 </div>
+                </Box>
            
           )
      }
@@ -85,9 +85,12 @@ function Floor(props){
 
      const renderMapTwo = () => {
        return (
- <div>
+   
+     <Box>
+          <div>
      {ImageMapComponentTwo}
-</div>
+          </div>
+     </Box>
        )
   }
 
@@ -95,14 +98,14 @@ function Floor(props){
 
 const renderBoth = () => {
      return (
-         <>
+          <Box>
       <div className="mapOne">
         {ImageMapComponentOne}    
           </div>
           <div className="mapTwo">
           {ImageMapComponentTwo}
           </div>
-          </>
+          </Box>
  
      )
 }
@@ -153,16 +156,14 @@ if(props.match.path === "/maps") {
 export default Floor
 
 const Box = styled.div`
-border: 5px
-border-style: solid
+height: auto;
+width: 1000px;
+display: inline-block;
 `
-// const BoxTwo = styled.div`
-// margin: 30px auto;
-// display: none;
-// width: 1100px;
-// height: 1200px;
-// position: relative;
-// ``
+
+
+
+
 
 const Background = styled.div`
 background-color: #0A8A8A 

@@ -103,51 +103,49 @@ normal = (e) => {
   render() {
     
         return (
-          <>
-            <img onLoad={this.imageDimensions} src={`/${this.state.portrait}`} style={{ borderRadius: "40px" }} width="250px" />
-          <img src={this.state.portait != "" ? this.state.portait : null} height="300px" width="300" px />
+     
             <Background>
-        
+  
           <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
         
       
-        <>
-        <Item>
-       <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="large" centered/></FrameTwo> 
+        
+        {/* <Item> */}
+       <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="huge" centered/></FrameTwo> 
     
         <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
-        
+        {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
+        <>
         <MyComment> 
-      <Comment>       
-      <Comment.Content>
+        <Comment>       
         {this.state.username != "" ?
-        <Frame>
-          
-        <Comment.Author>{this.state.username != "" ? this.renderUsername() : null}</Comment.Author>
-        <Comment.Text>{this.state.comment != "" ? this.renderComment() : null} </Comment.Text>      
-        </Frame>
+        <CommentFrame>
+        <Comment.Avatar onLoad={this.imageDimensions} src={`/${this.state.portrait}`} style={{ borderRadius: "20px" }} width="75px" />
+        <Comment.Content> 
+        <Comment.Author style={{fontWeight: "bold"}}>{this.state.username != "" ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Text>{this.state.comment != "" ? this.renderComment() : null}</Comment.Text>      
+      </Comment.Content>
+      </CommentFrame>
+
         :
         null}
-        {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
-      </Comment.Content>  
-      </Comment>
-      </MyComment>
+              </Comment>
+       </MyComment>
+       </>
+
+
         
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} , {this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
-       </Item>
-          </>
-       <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/>
-
+       {/* </Item> */}
+        
   
-      
-    
      
       </Background>
-  </>
 
+      
 
 
         )
@@ -166,6 +164,17 @@ border-width: 30px;
 width: 750px;
 background-color: #ffe;
 margin: 0px auto
+`
+
+const CommentFrame = styled.div`
+border-color: #f4be52;
+border-style: inset;
+border-width: 15px;
+width: 350px;
+background-color: #ffe;
+margin: 0px auto;
+display: inline-flex;
+align-items: flex-end;
 `
 
 
