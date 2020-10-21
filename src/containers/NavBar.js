@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Input, Menu, Dropdown } from 'semantic-ui-react'
+import { Input, Menu, Dropdown, MenuItem } from 'semantic-ui-react'
 
 
 class NavBar extends React.Component {
@@ -81,6 +81,13 @@ class NavBar extends React.Component {
               />
             </>
           }
+          <Menu.Item
+            name='Home'
+            as={Link}
+            to="/"
+            active={activeItem === 'Home'}
+            onClick={this.handleItemClick}
+          />
           <Menu.Item
             name='My Gallery'
             as={Link}

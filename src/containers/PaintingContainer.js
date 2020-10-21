@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { Item, Comment, Button, Image } from 'semantic-ui-react'
 import styled from 'styled-components'
 import FavoriteForm from '../components/FavoriteForm'
 
@@ -7,8 +7,12 @@ class PaintingContainer extends React.Component {
 
 state = {
   painting : [],
-  clicked: false
-}
+  clicked: false,
+  comment: "",
+  portrait: "",
+  username: ""
+  }
+
 
 
     componentDidMount = () => {
@@ -41,11 +45,46 @@ state = {
         "Content-type": "application/json"},
         body: JSON.stringify({ painting : this.state.painting, comment})})
         .then(resp => resp.json())
-        .then(console.log)
-        .catch(console.log)
+        .then(data => {
+          console.log(data)
+          this.setState({
+            comment : data.comment.comment,
+            portrait : data.user.portrait,
+            username : data.user.username
+          })
+        })
       }
       
+        
+        
+          
       
+    renderComment = () => {
+      return(
+        this.state.comment
+      )
+    }
+      
+
+    renderImage = () => {
+      return (
+        this.state.portait
+      )
+    }
+
+    renderUsername = () => {
+      return (
+        this.state.username
+      )
+    }
+
+      
+      
+  
+goBack = () => {
+  this.props.history.goBack()
+}
+
       
 colorChange = (e) => {
   e.target.style.color = "gold"
@@ -57,36 +96,53 @@ normal = (e) => {
       
     
  
-    render() {
+  render() {
         return (
-            <>
-            <Background>
-        <Item>
-       <img style={frameStyle} alt="painting image" src={this.state.painting.image}   size="huge" centered/>
     
-        <i onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
+            <Background>
+        
+            
+          <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
+        
+      
+        <>
+        <Item>
+       <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="large" centered/></FrameTwo> 
+    
+        <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
+        <MyComment> 
+      <Comment>       
+      <Comment.Content>
+        <Comment.Author>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Text>{this.state.comment.length > 0 ? this.renderComment() : null} </Comment.Text>      
+        {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
+      </Comment.Content>  
+      </Comment>
+      </MyComment>
+        
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
-            <p>{this.state.painting.dated} </p>
-            <p>{this.state.painting.style}</p>
+            <p>{this.state.painting.dated} , {this.state.painting.style}</p>
            <Frame> {this.state.painting.blurb}</Frame>
+       </Item>
+          </>
+       <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/>
 
-         
-           
-        </Item>
-       
-
-          <div className="fave-comment">
-            {this.state.clicked? <FavoriteForm submitHandler={this.submitHandler}/> : null}
-        
-      </div>
+  
+      
+    
+     
       </Background>
-           </> 
+  
+
+
+
         )
 
+        
     }
 
-}
+  }
 
 export default PaintingContainer
 
@@ -94,27 +150,52 @@ const Frame = styled.div`
 border-color: #f4be52;
 border-style: inset;
 border-width: 30px;
-width: 450px;
+width: 750px;
 background-color: #ffe;
-margin: 0px auto;
+margin: 0px auto
 `
 
+
+const FrameTwo = styled.div`
+border-color: 0D0A8A;
+border-style: inset;
+border-width: 30px;
+width: 450px;
+background-color: 0D0A8A;
+margin: 0px auto
+`
+
+
+const MyComment = styled.div`
+width: 450px;
+text-align: left;
+margin: 10px auto;
+text-align: left
+`
+
+const Back = styled.div`
+text-align: right
+`
 
 
 const Background = styled.div`
-background-color: #0A8A8A 
+background-color: #0A8A8A ;
+height: 100vh;
+width: 100vw;
+display: inline-table
 `
 
 
-const frameStyle = {
-  display: "inline-block",
-  margin: "20px, auto",
-  "height": "400px",
-  border: "10px solid transparent",
-  padding: "40px",
-  backgroundImage: "url('/assets/splash2.png')",
-  "-moz-border-image": "url('/assets/splash2.png')",
-  "-webkit-border-image": "url('/assets/splash2.png')",
-  "-o-border-image": "url('/assets/splash2.png')",
-  "border-image": "url('/assets/splash2.png')"
-}
+// const frameStyle = {
+//   display: "inline-block",
+//   margin: "20px, auto",
+//   height: "400px",
+//   border: "10px solid transparent",
+//   padding: "40px",
+//    border_image_source: "url('/assets/splash2.png')",
+//   // backgroundImage: "url('/assets/splash2.png')"
+//   // "-moz-border-image": "url('/assets/splash2.png')"
+//   // "-webkit-border-image": "url('/assets/splash2.png')"
+//   // "-o-border-image": "url('/assets/splash2.png')",
+//   // "border-image": "url('/assets/splash2.png')",
+// }

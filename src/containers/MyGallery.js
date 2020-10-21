@@ -1,6 +1,7 @@
 import React from 'react'
 import Gallery from '../components/Gallery'
 import styled from 'styled-components'
+import {Button} from 'semantic-ui-react'
 const FAVE_API = "http://localhost:3001/users/favorites"     
 
 
@@ -95,14 +96,21 @@ class MyGallery extends React.Component {
         }
       }
 
+      goBack = () => {
+          this.props.history.goBack()
+        }
+
       renderFaves = () => {
+           
            return <div> stuff</div>
       }
 
       render(){
            console.log("state", this.state)
            return (
-               <Background height={this.state.height} width={this.state.width} >
+               <Background>
+           <Back> <Button inverted color='orange' onClick={this.goBack}> Back</Button> </Back>
+
                     <h2>Faves</h2>
                     {this.state.favorites.length > 0 ?
                           
@@ -255,5 +263,8 @@ const Left = styled.div`
      z-index: 10;
      margin-left: 10px;
      display: flex;
-     flex-shrinkg: 1;
+     `
+
+const Back = styled.div`
+text-align: right
 `

@@ -2,8 +2,18 @@ import React from 'react';
 import styled from 'styled-components'
 import Login from './Login'
 import { withRouter } from 'react-router-dom'
+import { Form, Button} from 'semantic-ui-react'
 class Welcome extends React.Component {
    
+
+//     state = {
+//         description : ""
+//    }
+
+//    changeHandler = (e) => {
+//         this.setState({[e.target.name]: e.target.value})
+//    }
+
 
     render() {
         
@@ -22,11 +32,28 @@ class Welcome extends React.Component {
                             <Target src={'/assets/floorplan.png'} onClick={() => this.props.history.push('/maps')} />
     
                     </Targets>
+             
+          
+             
+     
                     
                 </div>
                 : 
                 <Login history={this.props.history} loginHandler={this.props.loginHandler} />}
             </>
+
+        //     <div>
+        //     <Form>
+        //     <Form.TextArea onChange={this.changeHandler}  name="description" value={this.state.description} placeholder="Describe your Gallery"/> 
+        //    <Button
+        //         content='Add Description'
+        //         labelPosition='left'
+        //         icon='paint brush'
+        //         primary
+        //       />
+        //     </Form>
+        //     </div>
+    
 
         )
     }

@@ -18,8 +18,9 @@ class FavoriteForm extends React.Component {
      return(
          
           <OurComment>
-               
+             
           <Form onSubmit={(e) => this.props.submitHandler(e)} >
+           
              <Form.TextArea onChange={this.changeHandler}  name="comment" value={this.state.comment} placeholder="Comments on the Artwork"/> 
                 <Button
                   content='Add Comment'
@@ -28,8 +29,8 @@ class FavoriteForm extends React.Component {
                   primary
                 />
               </Form>
+             
           </OurComment>
-       
      )
      }
  
@@ -43,10 +44,3 @@ const OurComment = styled.div`
 
 `
 
-const ComStyle = styled.div`
-text-align: center
-display: block
-width: 100%
-height: 100%
-
-`
