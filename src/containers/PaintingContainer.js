@@ -80,8 +80,7 @@ state = {
 
       
       
-   
-      
+  
 goBack = () => {
   this.props.history.goBack()
 }
@@ -99,8 +98,9 @@ normal = (e) => {
  
   render() {
         return (
-           
+    
             <Background>
+        
             
           <Back> <Button inverted color='orange' onClick={this.goBack}> Back to Gallery</Button></Back>
         
@@ -110,6 +110,16 @@ normal = (e) => {
        <FrameTwo><Image alt="painting image" src={this.state.painting.image}   size="large" centered/></FrameTwo> 
     
         <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
+        <MyComment> 
+      <Comment>       
+      <Comment.Content>
+        <Comment.Author>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
+        <Comment.Text>{this.state.comment.length > 0 ? this.renderComment() : null} </Comment.Text>      
+        {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
+      </Comment.Content>  
+      </Comment>
+      </MyComment>
+        
          <h1>{this.state.painting.title}</h1>
             <h2>{this.state.painting.artist}</h2>
             <p>{this.state.painting.dated} , {this.state.painting.style}</p>
@@ -118,25 +128,18 @@ normal = (e) => {
           </>
        <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/>
 
-      <MyComment> 
-      <Comment> 
-        {/* <Image alt="" src={this.state.portrait.length > 0 ? this.renderImage() : null}/> */}
-      <Comment.Content>
-        <Comment.Author>{this.state.username.length > 0 ? this.renderUsername() : null}</Comment.Author>
-        <Comment.Text>{this.state.comment.length > 0 ? this.renderComment() : null} </Comment.Text>      
-      </Comment.Content>  
-      </Comment>
-        </MyComment>
+  
       
-      
-
-       <div className="fave-comment">
-        {this.state.clicked && this.state.comment.length < 1? <FavoriteForm submitHandler={this.submitHandler}/> : null}
-        </div>
-      
+    
+     
       </Background>
+  
+
+
+
         )
 
+        
     }
 
   }
@@ -147,9 +150,9 @@ const Frame = styled.div`
 border-color: #f4be52;
 border-style: inset;
 border-width: 30px;
-width: 450px;
+width: 750px;
 background-color: #ffe;
-margin: 0px auto;
+margin: 0px auto
 `
 
 
@@ -159,7 +162,7 @@ border-style: inset;
 border-width: 30px;
 width: 450px;
 background-color: 0D0A8A;
-margin: 0px auto;
+margin: 0px auto
 `
 
 
@@ -167,30 +170,32 @@ const MyComment = styled.div`
 width: 450px;
 text-align: left;
 margin: 10px auto;
-margin-bottom: 10px;
-text-align: left;
-display: flex;
+text-align: left
 `
 
 const Back = styled.div`
 text-align: right
 `
 
+
 const Background = styled.div`
-background-color: #0A8A8A 
+background-color: #0A8A8A ;
+height: 100vh;
+width: 100vw;
+display: inline-table
 `
 
 
-const frameStyle = {
-  display: "inline-block",
-  margin: "20px, auto",
-  height: "400px",
-  border: "10px solid transparent",
-  padding: "40px",
-   border_image_source: "url('/assets/splash2.png')",
-  // backgroundImage: "url('/assets/splash2.png')"
-  // "-moz-border-image": "url('/assets/splash2.png')"
-  // "-webkit-border-image": "url('/assets/splash2.png')"
-  // "-o-border-image": "url('/assets/splash2.png')",
-  // "border-image": "url('/assets/splash2.png')",
-}
+// const frameStyle = {
+//   display: "inline-block",
+//   margin: "20px, auto",
+//   height: "400px",
+//   border: "10px solid transparent",
+//   padding: "40px",
+//    border_image_source: "url('/assets/splash2.png')",
+//   // backgroundImage: "url('/assets/splash2.png')"
+//   // "-moz-border-image": "url('/assets/splash2.png')"
+//   // "-webkit-border-image": "url('/assets/splash2.png')"
+//   // "-o-border-image": "url('/assets/splash2.png')",
+//   // "border-image": "url('/assets/splash2.png')",
+// }
