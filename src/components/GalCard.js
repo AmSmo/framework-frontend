@@ -11,7 +11,7 @@ function GalCard(props){
     }
     
     return(
-    <Card style={{ borderRadius: "10px", width: "230px"}} onClick={() => sendToGallery()}>
+    <Card style={{ borderRadius: "10px", width: "230px", margin: "20px"}} onClick={() => sendToGallery()}>
         <Image src={`/${props.userGallery.user.portrait}`} style={{margin: "15px", borderRadius: "15px", height: "280px"}} />
         <Card.Content>
             <Card.Header>{props.userGallery.user.username}</Card.Header>
