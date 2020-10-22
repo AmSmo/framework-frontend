@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageMap, Area } from '@qiuz/react-image-map';
+import { ImageMap } from '@qiuz/react-image-map';
 import styled from 'styled-components'
 
 
@@ -106,7 +106,7 @@ export default Map
 const Inline = styled.div`
 position: fixed;
 left: 39vw;
-height: 280px;
-width: 400px;
+height: 200px;
+width: 320px;
 bottom: 20px;
 `

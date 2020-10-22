@@ -102,12 +102,12 @@ class App extends React.Component {
         <Route path="/search/:keyword" render={(routerprops) => <SearchContainer {...routerprops}/>} />
         <Route path="/login" render={(routerprops) => <Welcome {...routerprops} user={this.state.user}/>} />
         <Route path="/signup" render={(routerprops) => <Signup {...routerprops} signupHandler={this.signupHandler} />} />
+        <Route path="/favorites/" render={(routerprops) => <MyGallery {...routerprops} mine={true}  />}/>
         <Route path="/galleries/others/" render={(routerprops) => <OtherGals {...routerprops} /> }/>
         <Route path="/galleries/:galleryId" render={(routerprops) => <GalleryContainer {...routerprops} />} />
         <Route path="/paintings/:paintingId" render={(routerprops) => <PaintingContainer {...routerprops} />}/>
           <Route path="/gallery/:userId" render={(routerprops) => <MyGallery {...routerprops} />}/>
         <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
-        <Route path="/favorites/" render={(routerprops) => <MyGallery {...routerprops}  />}/>
         <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} />}/>
       </Switch>
         

@@ -33,7 +33,7 @@ render() {
             <h1> The Framework Community</h1>
             {this.state.galleries.length === 0 ?
                 <Center>
-                    <img src={'/assets/loading.gif'} />
+                    <img src={'/assets/loading.gif'} alt="loading" />
 
                 </Center>
         

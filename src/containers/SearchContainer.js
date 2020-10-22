@@ -15,7 +15,7 @@ class SearchContainer extends React.Component {
         if (this.state.api.length === 0) {
             return(
             <Center>
-                <img src={'/assets/loading.gif'} />
+                <img src={'/assets/loading.gif'} alt="loading" />
 
             </Center>)
         } else {

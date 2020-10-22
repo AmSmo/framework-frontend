@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import {NavLink} from 'react-router-dom'
-import { Button, Form, Grid, Icon, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Icon, Header, Message, Segment } from 'semantic-ui-react'
 
 function Login(props){
     const [username, setUsername] = useState('')

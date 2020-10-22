@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Gallery from '../components/Gallery'
+
 import styled from 'styled-components'
 import {Button} from 'semantic-ui-react'
 const FAVE_API = "http://localhost:3001/users/favorites/"
@@ -11,7 +11,8 @@ class MyGallery extends React.Component {
      state = {
           favorites : [],
           width: window.innerWidth,
-          height: window.innerHeight
+          height: window.innerHeight,
+          user: 0
      }
 
     
@@ -44,10 +45,13 @@ class MyGallery extends React.Component {
           }
      }
 
+     componentDidUpdate = (prevProps, prevState) => {
+          return prevState.user !== this.props.match.params.userId
+     }
      
-
      componentWillUnmount = () => {
           window.removeEventListener("resize", this.updateDimensions)
+          
      }
      updateDimensions = () => {
           this.setState({ width: window.innerWidth, height: window.innerHeight })
@@ -79,11 +83,12 @@ class MyGallery extends React.Component {
      }
 
      componentDidMount = () => {
+          console.log("mountie")
           window.addEventListener('resize', this.updateDimensions)
           let token = localStorage.getItem("token")
           let fetchHere = FAVE_API
           if (this.props.match.params.userId){
-               
+               this.setState({ user: this.props.match.params.userId })
                fetchHere =(FAVE_API + this.props.match.params.userId)
           }
           if (token){

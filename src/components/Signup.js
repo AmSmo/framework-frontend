@@ -51,7 +51,7 @@ function Signup(props){
     <div style={frameSplash}>
         
         <div style={head}>Welcome to Framework</div>
-        <img  src={'/assets/splash2.png'} style={imgStyle} />
+        <img  src={'/assets/splash2.png'} style={imgStyle} alt="Gold Frame" />
     <Grid textAlign='center' style={{ marginTop: '13vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>

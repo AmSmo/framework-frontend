@@ -1,7 +1,7 @@
 import React from 'react';
-import { ImageMap, Area } from '@qiuz/react-image-map';
+import { ImageMap} from '@qiuz/react-image-map';
 import styled from 'styled-components'
-import { withRouter} from 'react-router-dom'
+
 
 function Floor(props){
 

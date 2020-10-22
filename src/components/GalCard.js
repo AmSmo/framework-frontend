@@ -21,10 +21,10 @@ function GalCard(props){
       </Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <a>
+            
                 <Icon name="small paint brush icon" />
         {(props.userGallery.paintings_with_comments.length)} Paintings
-      </a>
+      
         </Card.Content>
     </Card>)
 }

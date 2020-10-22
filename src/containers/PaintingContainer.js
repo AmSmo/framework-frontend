@@ -1,5 +1,5 @@
 import React from 'react'
-import { Comment, Button, Image, Item } from 'semantic-ui-react'
+import { Comment, Button, Image } from 'semantic-ui-react'
 import styled from 'styled-components'
 import FavoriteForm from '../components/FavoriteForm'
 
@@ -196,9 +196,6 @@ display: inline-flex;
 align-items: flex-end;
 `
 
-const Gold = styled.div`
-color: "#d4af37"
-`
 
 const FrameTwo = styled.div`
 border-color: 0D0A8A;
