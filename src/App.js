@@ -78,6 +78,7 @@ class App extends React.Component {
     fetch(BASE_API + 'users', configObj)
     .then(resp => resp.json())
     .then(data => {
+      
       localStorage.setItem("token", data.jwt)
       this.setState({user: data.user})
       this.props.history.push("/maps")})
@@ -90,7 +91,10 @@ class App extends React.Component {
     localStorage.removeItem("token")
   }
   
-  
+  setUser = (newUser) => {
+    
+    return this.setState({user: newUser})
+  }
   
   render() {
   return (
@@ -108,7 +112,7 @@ class App extends React.Component {
         <Route path="/paintings/:paintingId" render={(routerprops) => <PaintingContainer {...routerprops} />}/>
           <Route path="/gallery/:userId" render={(routerprops) => <MyGallery {...routerprops} />}/>
         <Route path="/maps" render={(routerprops) => <MapContainer {...routerprops} />}/>
-        <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} />}/>
+        <Route path="/" render={(routerprops) => <Welcome {...routerprops} user={this.state.user} loginHandler={this.loginHandler} setUser={this.setUser}/>}/>
       </Switch>
         
         :

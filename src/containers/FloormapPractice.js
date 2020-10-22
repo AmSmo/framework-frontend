@@ -27,7 +27,7 @@ class FloorMapPractice extends React.Component {
      }
       
      updateMapArea = (id, coords) => {
-          console.log(id, coords);
+          
               const areas = mapAreas.areas.map(item =>
                 item.id === id ? { ...item, coords } : item
               );

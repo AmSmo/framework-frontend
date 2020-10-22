@@ -38,10 +38,11 @@ render() {
                 </Center>
         
         :
+                
         <CardContainer>
                     {this.cardMe()}
         </CardContainer>
-        
+       
         }
         </Background>
     )
@@ -70,6 +71,9 @@ const Background = styled.div`
 const CardContainer = styled.div`
     display: flex;
     justify-content: center;
+    margin: 30px 80px;
+    flex-wrap: wrap;
+    
 `
 
 

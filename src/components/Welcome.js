@@ -26,7 +26,7 @@ class Welcome extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.user)
+        // console.log(this.props.user)
     }
 
 
@@ -34,7 +34,7 @@ class Welcome extends React.Component {
     submitHandler = (e) => {
         e.preventDefault()
         let description = this.state.description
-        console.log(description)
+        
         let token = localStorage.getItem("token")
         fetch("http://localhost:3001/galleries/" + `${this.props.user.gallery.id}`, {
             method: "PATCH",
@@ -46,7 +46,10 @@ class Welcome extends React.Component {
             body: JSON.stringify({ description: description })
         })
             .then(resp => resp.json())
-            .then(console.log)
+            .then(data=> {
+                
+                this.props.setUser(data)}
+                )
     }
 
     renderDescription = () => {
@@ -56,7 +59,7 @@ class Welcome extends React.Component {
     }
 
     render() {
-
+        
         return (
 
             <>
@@ -72,7 +75,8 @@ class Welcome extends React.Component {
                             <Target src={'/assets/floorplan.png'} onClick={() => this.props.history.push('/maps')} />
 
                         </Targets>
-                        {this.props.user.gallery.name ? <CommentFrame><h3>{this.renderDescription()}</h3></CommentFrame>
+                        { this.props.user.gallery.name ? 
+                        <CommentFrame><h3>{this.renderDescription()}</h3></CommentFrame>
                             : <>
                                 <i center onClick={this.formClick} class="huge paint brush icon" onMouseOver={this.colorChange} onMouseLeave={this.normal}></i>
                                 {this.state.clicked ? <>

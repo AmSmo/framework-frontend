@@ -131,7 +131,7 @@ const renderBoth = () => {
 
 
 if(props.match.path === "/maps") {
-     console.log(props)
+     
      return (
      renderBoth()
      )

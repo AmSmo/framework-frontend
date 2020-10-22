@@ -83,7 +83,7 @@ class MyGallery extends React.Component {
      }
 
      componentDidMount = () => {
-          console.log("mountie")
+          
           window.addEventListener('resize', this.updateDimensions)
           let token = localStorage.getItem("token")
           let fetchHere = FAVE_API
@@ -123,7 +123,7 @@ class MyGallery extends React.Component {
                <Background>
            <Back> <Button inverted color='orange' onClick={this.goBack}> Back</Button> </Back>
 
-                    <h2>Faves</h2>
+                    
                     {this.state.favorites.length > 0 ?
                           
                                <Hall>
@@ -137,7 +137,7 @@ class MyGallery extends React.Component {
                           
                     :
                     <div>
-                         <img src={'/assets/construction2.png'} />
+                         <img src={'/assets/construction2.png'} style={{marginTop: "25vh"}}/>
                     </div>
                     }
                </Background>
@@ -157,8 +157,8 @@ const Background = styled.div`
      background-position: fixed;
     top: 20px;
     left 0px;
-    width: ${props => props.width};
-    height: ${props => props.height-30}px;
+    width: 100vw;
+    height: 100vh;
      background-size: 100% 20%;
     background-position: center;
     -ms-background-size: cover;

@@ -89,7 +89,7 @@ class GalleryContainer extends React.Component {
 
      render(){
           
-          console.log(this.state)
+          
           return(
                <div className="GalleryContainer">
                     { this.state.api.length === 0 ? 

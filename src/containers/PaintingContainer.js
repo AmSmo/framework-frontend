@@ -26,7 +26,7 @@ class PaintingContainer extends React.Component {
     })
       .then(resp => resp.json())
       .then(painting => {
-        console.log(painting)
+        
         if (painting.comment !== "") {
           this.setState({ painting: painting, comment: painting.comment, portrait: painting.user.portrait, username: painting.user.username })
         } else {
